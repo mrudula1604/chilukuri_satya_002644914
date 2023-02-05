@@ -6,7 +6,7 @@ package Model;
 
 /**
  *
- * @author prasad
+ * @author Chilukuri
  */
 public class Contact {
     

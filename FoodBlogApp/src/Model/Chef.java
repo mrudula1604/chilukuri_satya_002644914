@@ -6,7 +6,7 @@ package Model;
 
 /**
  *
- * @author Chiluuri
+ * @author Chilukuri
  */
 public class Chef {
     

@@ -9,9 +9,19 @@ import javax.swing.Icon;
 
 /**
  *
- * @author prasad
+ * @author Chilukuri
  */
 public class Recipe {
+    
+    private String recipeTitle;
+    private int numberOfServings;
+    private Boolean isGlutenFree;
+    private float difficultyLevel;
+    private Integer numberOfIngredients;
+    private String category;
+    private String description;
+    private Icon recipePicture;
+    private Float difficulty;
 
     public String getRecipeTitle() {
         return recipeTitle;
@@ -76,14 +86,14 @@ public class Recipe {
     public void setRecipePicture(Icon recipePicture) {
         this.recipePicture = recipePicture;
     }
-    private String recipeTitle;
-    private int numberOfServings;
-    private Boolean isGlutenFree;
-    private float difficultyLevel;
-    private Integer numberOfIngredients;
-    private String category;
-    private String description;
-    private Icon recipePicture;
+
+    public Float getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Float difficulty) {
+        this.difficulty = difficulty;
+    }
     
       
 }
