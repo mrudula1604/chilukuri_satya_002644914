@@ -253,6 +253,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="firstNameField">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameFieldActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
             </Component>

@@ -9,6 +9,8 @@ import Model.Contact;
 import Model.Recipe;
 import java.awt.Image;
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -103,6 +105,12 @@ public class foodblog_backup extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
 
         jLabel1.setText("First Name");
+
+        firstNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstNameFieldActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Last Name");
 
@@ -407,27 +415,59 @@ public class foodblog_backup extends javax.swing.JFrame {
         else if(recipeImageLabel.getIcon() == null){
             JOptionPane.showMessageDialog(null, "Please upload a recipe image");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Recipe added successfully");
+        
+        //additional validations
+        if(!ValidateNames(firstName)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid FirstName");
         }
-        
-        chef.getContact().setEmail(email);
-        chef.getContact().setPhone(phone);
-        
-        chef.getRecipe().setRecipeTitle(recipeTitle);
-        chef.getRecipe().setDescription(description);
-        chef.getRecipe().setCategory(category);
-        chef.getRecipe().setNumberOfIngredients(Integer.parseInt(numOfIngredients));
-        chef.getRecipe().setNumberOfServings(Integer.parseInt(servingsSize));
-        chef.getRecipe().setIsGlutenFree(Boolean.getBoolean(isGlutenFree));
-        chef.getRecipe().setDifficulty(Float.parseFloat(difficulty));
-        chef.getRecipe().setRecipePicture(recipeImageLabel.getIcon());
-        
-        this.chef.setFirstName(firstName);
-        this.chef.setLastName(lastName);
-        this.chef.setUserName(userName);
-        
-        disableFields();
+        else if(!ValidateNames(lastName)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid LastName");
+        }
+        else if(!ValidateUserName(userName)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid username");
+        }
+        else if(!ValidateEmail(email)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid email");
+        }
+        else if(!ValidatePhone(phone)){
+             JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+        }
+        else if(!ValidateNames(recipeTitle)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid recipe title");
+        }
+        else if(!ValidateIntegerFields(servingsSize)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid servings size");
+        }
+        else if(!ValidateDifficulty(difficulty)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid difficulty level");
+        }
+        else if(!ValidateIntegerFields(numOfIngredients)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid number of ingredients");
+        }
+        else if(!ValidateNames(category)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid category");
+        }
+        else if(!ValidateNames(description)){
+            JOptionPane.showMessageDialog(null, "Please enter a valid recipe description");
+        }
+        else{
+            chef.getContact().setEmail(email);
+            chef.getContact().setPhone(phone);
+
+            chef.getRecipe().setRecipeTitle(recipeTitle);
+            chef.getRecipe().setDescription(description);
+            chef.getRecipe().setCategory(category);
+            chef.getRecipe().setNumberOfIngredients(Integer.parseInt(numOfIngredients));
+            chef.getRecipe().setNumberOfServings(Integer.parseInt(servingsSize));
+            chef.getRecipe().setIsGlutenFree(Boolean.getBoolean(isGlutenFree));
+            chef.getRecipe().setDifficulty(Float.parseFloat(difficulty));
+            chef.getRecipe().setRecipePicture(recipeImageLabel.getIcon());
+
+            this.chef.setFirstName(firstName);
+            this.chef.setLastName(lastName);
+            this.chef.setUserName(userName);
+            disableFields();
+        }   
     }//GEN-LAST:event_saveActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -443,6 +483,10 @@ public class foodblog_backup extends javax.swing.JFrame {
     private void difficultyFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_difficultyFieldActionPerformed
+
+    private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstNameFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,4 +608,54 @@ public class foodblog_backup extends javax.swing.JFrame {
         recipeImageLabel.setIcon(null);
         difficultyField.setText("");
     }
-}
+    
+    private boolean ValidateNames(String name)
+    {
+        String pattern = "^[a-zA-Z\\s]*$";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(name);
+        return match.matches();
+    }
+    
+    private boolean ValidateUserName(String userName)
+    {
+        String pattern = "^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(userName);
+        return match.matches();
+    }
+    
+    private boolean ValidateIntegerFields(String fieldValue)
+    {
+        String pattern = "^[1-9]{0,2}";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(fieldValue);
+        return match.matches();
+    }
+    
+    private boolean ValidateEmail(String email)
+    {
+        String pattern ="[a-z0-9]+@[a-z]+\\.[a-z]{2,3}";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(email);
+        return match.matches();
+    }
+    
+    private boolean ValidatePhone(String phone)
+    {
+        String pattern = "^[0-9]{0,10}";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(phone);
+        return match.matches();
+    }
+    
+    private boolean ValidateDifficulty(String difficulty)
+    {
+        String pattern = "[+-]?([0-9]*[.])?[0-9]+";
+        Pattern patt = Pattern.compile(pattern);
+        Matcher match = patt.matcher(difficulty);
+        return match.matches();
+        
+    }
+            
+ }
