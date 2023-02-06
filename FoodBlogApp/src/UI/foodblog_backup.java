@@ -39,6 +39,39 @@ public class foodblog_backup extends javax.swing.JFrame {
                                    
     
     private void display(){
+        emailDisplayLabel.setText(chef.getContact().getEmail());
+        phoneDisplayName.setText(chef.getContact().getPhone());
+
+        recipeTitleDisplayLabel.setText(chef.getRecipe().getRecipeTitle());
+        recipeDescDisplayLabel.setText(chef.getRecipe().getDescription());
+        categoryDisplayLabel.setText(chef.getRecipe().getCategory());
+        numIngredientsDisplayLabel.setText(chef.getRecipe().getNumberOfIngredients().toString());
+        servingsDisplayLabel.setText(chef.getRecipe().getNumberOfServings().toString());
+        isGlutenFreeDisplayLabel.setText(chef.getRecipe().getIsGlutenFree().toString());
+        difficultyDisplayLabel.setText(chef.getRecipe().getDifficulty().toString());
+        recipeImgDisplayLabel.setIcon(chef.getRecipe().getRecipePicture());
+
+        firstNameDisplayLabel.setText(chef.getFirstName());
+        lastNameDisplayLabel.setText(chef.getLastName());
+        usernameDisplayLabel.setText(chef.getUserName());     
+    }
+    
+    private void clearDisplay(){
+        emailDisplayLabel.setText("");
+        phoneDisplayName.setText("");
+
+        recipeTitleDisplayLabel.setText("");
+        recipeDescDisplayLabel.setText("");
+        categoryDisplayLabel.setText("");
+        numIngredientsDisplayLabel.setText("");
+        servingsDisplayLabel.setText("");
+        isGlutenFreeDisplayLabel.setText("");
+        difficultyDisplayLabel.setText("");
+        recipeImgDisplayLabel.setIcon(null);
+
+        firstNameDisplayLabel.setText("");
+        lastNameDisplayLabel.setText("");
+        usernameDisplayLabel.setText("");     
     }
 
     /**
@@ -84,6 +117,33 @@ public class foodblog_backup extends javax.swing.JFrame {
         difficultyLabel = new javax.swing.JLabel();
         difficultyField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        lastNameDisplayLabel = new javax.swing.JLabel();
+        usernameDisplayLabel = new javax.swing.JLabel();
+        emailDisplayLabel = new javax.swing.JLabel();
+        phoneDisplayName = new javax.swing.JLabel();
+        firstNameDisplayLabel = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        recipeTitleDisplayLabel = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        recipeDescDisplayLabel = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        servingsDisplayLabel = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        numIngredientsDisplayLabel = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        categoryDisplayLabel = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        isGlutenFreeDisplayLabel = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        difficultyDisplayLabel = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        recipeImgDisplayLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -98,7 +158,7 @@ public class foodblog_backup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(450);
+        jSplitPane1.setDividerLocation(500);
         jSplitPane1.setDividerSize(10);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -313,15 +373,128 @@ public class foodblog_backup extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
 
+        jLabel11.setText("First Name");
+
+        jLabel14.setText("Last Name");
+
+        jLabel15.setText("Username");
+
+        jLabel16.setText("Email");
+
+        jLabel17.setText("Phone");
+
+        jLabel19.setText("Recipe Title");
+
+        jLabel21.setText("Recipe Description");
+
+        jLabel23.setText("Servings");
+
+        jLabel25.setText("Num of Ingredients");
+
+        jLabel27.setText("Category");
+
+        jLabel29.setText("Is Gluten Free");
+
+        jLabel31.setText("Difficulty Level");
+
+        jLabel33.setText("Recipe Image");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 878, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(usernameDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(phoneDisplayName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(firstNameDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(lastNameDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+                .addGap(95, 95, 95)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(recipeTitleDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(recipeDescDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(servingsDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numIngredientsDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(difficultyDisplayLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addComponent(isGlutenFreeDisplayLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(recipeImgDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel18)
+                    .addComponent(firstNameDisplayLabel)
+                    .addComponent(jLabel19)
+                    .addComponent(recipeTitleDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(lastNameDisplayLabel)
+                    .addComponent(jLabel21)
+                    .addComponent(recipeDescDisplayLabel))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(usernameDisplayLabel)
+                    .addComponent(jLabel23)
+                    .addComponent(servingsDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(emailDisplayLabel)
+                    .addComponent(jLabel25)
+                    .addComponent(numIngredientsDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(phoneDisplayName)
+                    .addComponent(jLabel27)
+                    .addComponent(categoryDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(isGlutenFreeDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(difficultyDisplayLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addGap(0, 69, Short.MAX_VALUE))
+                    .addComponent(recipeImgDisplayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -336,7 +509,7 @@ public class foodblog_backup extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -467,6 +640,8 @@ public class foodblog_backup extends javax.swing.JFrame {
             this.chef.setLastName(lastName);
             this.chef.setUserName(userName);
             disableFields();
+            
+            display();
         }   
     }//GEN-LAST:event_saveActionPerformed
 
@@ -478,6 +653,7 @@ public class foodblog_backup extends javax.swing.JFrame {
        clearFields();
        enableFields();
        this.chef = new Chef(); // reset saved object
+       clearDisplay();
     }//GEN-LAST:event_clearActionPerformed
 
     private void difficultyFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyFieldActionPerformed
@@ -525,21 +701,40 @@ public class foodblog_backup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel categoryDisplayLabel;
     private javax.swing.JTextField categoryField;
     private javax.swing.JButton clear;
+    private javax.swing.JLabel difficultyDisplayLabel;
     private javax.swing.JTextField difficultyField;
     private javax.swing.JLabel difficultyLabel;
     private javax.swing.JButton edit;
+    private javax.swing.JLabel emailDisplayLabel;
     private javax.swing.JTextField emailField;
+    private javax.swing.JLabel firstNameDisplayLabel;
     private javax.swing.JTextField firstNameField;
+    private javax.swing.JLabel isGlutenFreeDisplayLabel;
     private javax.swing.JCheckBox isGlutenFreeField;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -549,16 +744,24 @@ public class foodblog_backup extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lastNameDisplayLabel;
     private javax.swing.JTextField lastNameField;
+    private javax.swing.JLabel numIngredientsDisplayLabel;
     private javax.swing.JTextField numIngredientsField;
+    private javax.swing.JLabel phoneDisplayName;
     private javax.swing.JTextField phoneField;
+    private javax.swing.JLabel recipeDescDisplayLabel;
     private javax.swing.JTextField recipeDescField;
     private javax.swing.JLabel recipeImageLabel;
+    private javax.swing.JLabel recipeImgDisplayLabel;
+    private javax.swing.JLabel recipeTitleDisplayLabel;
     private javax.swing.JTextField recipeTitleField;
     private javax.swing.JButton save;
+    private javax.swing.JLabel servingsDisplayLabel;
     private javax.swing.JTextField servingsSizeField;
     private javax.swing.JButton uploadRecipeImageButton;
     private javax.swing.JTextField userNameField;
+    private javax.swing.JLabel usernameDisplayLabel;
     // End of variables declaration//GEN-END:variables
 
     private void disableFields() {
@@ -643,7 +846,7 @@ public class foodblog_backup extends javax.swing.JFrame {
     
     private boolean ValidatePhone(String phone)
     {
-        String pattern = "^[0-9]{0,10}";
+        String pattern = "^[0-9]{10}$";
         Pattern patt = Pattern.compile(pattern);
         Matcher match = patt.matcher(phone);
         return match.matches();

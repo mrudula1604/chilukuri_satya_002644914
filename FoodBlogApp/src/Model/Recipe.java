@@ -31,7 +31,7 @@ public class Recipe {
         this.recipeTitle = recipeTitle;
     }
 
-    public int getNumberOfServings() {
+    public Integer getNumberOfServings() {
         return numberOfServings;
     }
 
