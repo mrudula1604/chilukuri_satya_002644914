@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="applicationIdLabel" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="petInsurancePlanLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petVaccinationsLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petBreedLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petTypeLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petGenderLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petAgeLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="petNameLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="applicantFirstNameLabel" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="applicationIdTextField" max="32767" attributes="0"/>
+                          <Component id="applicantFirstNameTextField" max="32767" attributes="0"/>
+                          <Component id="applicantLastNameTextField" max="32767" attributes="0"/>
+                          <Component id="petNameTextField" max="32767" attributes="0"/>
+                          <Component id="ageTextField" max="32767" attributes="0"/>
+                          <Component id="genderTextField" max="32767" attributes="0"/>
+                          <Component id="petTypeTextField" max="32767" attributes="0"/>
+                          <Component id="petBreedTextField" max="32767" attributes="0"/>
+                          <Component id="petVaccinationsCbox" pref="124" max="32767" attributes="0"/>
+                          <Component id="insurancePlanCbox" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="158" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="471" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="applicationIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="applicationIdTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="applicantFirstNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="applicantFirstNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="applicantLastNameTextField" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="petNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="petNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="petAgeLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="ageTextField" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="petGenderLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="genderTextField" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="petTypeLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="petTypeTextField" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="petBreedLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="petBreedTextField" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="petVaccinationsLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="petVaccinationsCbox" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="petInsurancePlanLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="insurancePlanCbox" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="95" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="applicationIdLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Application ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="applicantFirstNameLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Applicant First Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Applicant Last Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petNameLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pet Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petAgeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Age"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petGenderLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gender"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petTypeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pet Type"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petBreedLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Breed"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petVaccinationsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vaccinations"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="petInsurancePlanLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insurance Plan"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="applicationIdTextField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="applicationIdTextFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="applicantFirstNameTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="applicantLastNameTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="petNameTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="ageTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="genderTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="petTypeTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="petBreedTextField">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="petVaccinationsCbox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="insurancePlanCbox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save Application"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
