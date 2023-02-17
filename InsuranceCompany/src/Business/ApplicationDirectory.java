@@ -8,13 +8,6 @@ package Business;
  *
  * @author Prasad
  */
-public class PlanDetail {
-    private String planId;
-    private String planName;
-    private String costPerMonth;
-            
-            
-            
-            
+public class ApplicationDirectory {
     
 }

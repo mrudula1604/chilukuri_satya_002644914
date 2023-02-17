@@ -44,9 +44,10 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
         genderTextField = new javax.swing.JTextField();
         petTypeTextField = new javax.swing.JTextField();
         petBreedTextField = new javax.swing.JTextField();
-        petVaccinationsCbox = new javax.swing.JComboBox<>();
         insurancePlanCbox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        vaccinationsJList = new javax.swing.JList<>();
 
         applicationIdLabel.setText("Application ID");
 
@@ -74,11 +75,16 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
             }
         });
 
-        petVaccinationsCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         insurancePlanCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Save Application");
+
+        vaccinationsJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(vaccinationsJList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +108,7 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
                                 .addComponent(applicantFirstNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(applicationIdTextField)
+                            .addComponent(applicationIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(applicantFirstNameTextField)
                             .addComponent(applicantLastNameTextField)
                             .addComponent(petNameTextField)
@@ -110,12 +116,12 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
                             .addComponent(genderTextField)
                             .addComponent(petTypeTextField)
                             .addComponent(petBreedTextField)
-                            .addComponent(petVaccinationsCbox, 0, 124, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addComponent(insurancePlanCbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(66, 66, 66)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,17 +158,20 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(petBreedLabel)
                     .addComponent(petBreedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(petVaccinationsLabel)
-                    .addComponent(petVaccinationsCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(petVaccinationsLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(petInsurancePlanLabel)
                     .addComponent(insurancePlanCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(24, 24, 24)
                 .addComponent(jButton1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,6 +191,7 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> insurancePlanCbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel petAgeLabel;
     private javax.swing.JLabel petBreedLabel;
     private javax.swing.JTextField petBreedTextField;
@@ -191,7 +201,7 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField petNameTextField;
     private javax.swing.JLabel petTypeLabel;
     private javax.swing.JTextField petTypeTextField;
-    private javax.swing.JComboBox<String> petVaccinationsCbox;
     private javax.swing.JLabel petVaccinationsLabel;
+    private javax.swing.JList<String> vaccinationsJList;
     // End of variables declaration//GEN-END:variables
 }

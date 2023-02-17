@@ -4,6 +4,15 @@
  */
 package UI;
 
+import Business.Catalog;
+import Business.InsurancePlan;
+import Business.InsurancePlanCatalog;
+import Business.Vaccine;
+import Business.VaccineCatalog;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,9 +22,36 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
     /**
      * Creates new form InsurancePlansJPanel
      */
-    public InsurancePlansJPanel() {
+    
+    private Catalog catalog;
+    DefaultTableModel insurancePlansTableModel;
+    InsurancePlan selectedInsurancePlan;
+    
+    public InsurancePlansJPanel(Catalog catalog) {
         initComponents();
+        
+        this.catalog = catalog;
+        this.insurancePlansTableModel = (DefaultTableModel) insurancePlansJTable.getModel();
+        
+        displayInsurancePlans();
+        
+        updateInsurancePlanButton.setEnabled(false);
     }
+    
+    public void displayInsurancePlans() {
+        ArrayList<InsurancePlan> insurancePlans = this.catalog.getInsurancePlans().getInsurancePlans();
+        if(insurancePlans.size() > 0) {
+            insurancePlansTableModel.setRowCount(0);
+            for(InsurancePlan ip: insurancePlans) {
+                Object row[] = new Object[4];
+                row[0] = ip.getPlanId();
+                row[1] = ip.getPlanName();
+                row[2] = ip.getCostPerMonth();
+                row[3] = ip.getCostPerYear();
+                insurancePlansTableModel.addRow(row);
+            }
+        }
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,16 +65,14 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
         planIdLabel = new javax.swing.JLabel();
         planNameLabel = new javax.swing.JLabel();
         costPerMonthLabel = new javax.swing.JLabel();
-        costPerYearLabel = new javax.swing.JLabel();
         planIdTextField = new javax.swing.JTextField();
         planNameTextField = new javax.swing.JTextField();
         costPerMonthTextField = new javax.swing.JTextField();
-        costPerYearTextField = new javax.swing.JTextField();
-        savePlanButton = new javax.swing.JButton();
+        addPlanButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         insurancePlansJTable = new javax.swing.JTable();
         viewPlanDetailsButton = new javax.swing.JButton();
-        deleteInsurancePlanButton = new javax.swing.JButton();
+        updateInsurancePlanButton = new javax.swing.JButton();
 
         planIdLabel.setText("Plan ID");
 
@@ -46,9 +80,18 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
 
         costPerMonthLabel.setText("Cost Per Month");
 
-        costPerYearLabel.setText("Cost Per Year");
+        planIdTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                planIdTextFieldFocusLost(evt);
+            }
+        });
 
-        savePlanButton.setText("Save Plan");
+        addPlanButton.setText("Add");
+        addPlanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPlanButtonActionPerformed(evt);
+            }
+        });
 
         insurancePlansJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,10 +121,10 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
             }
         });
 
-        deleteInsurancePlanButton.setText("Delete Plan");
-        deleteInsurancePlanButton.addActionListener(new java.awt.event.ActionListener() {
+        updateInsurancePlanButton.setText("Update");
+        updateInsurancePlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteInsurancePlanButtonActionPerformed(evt);
+                updateInsurancePlanButtonActionPerformed(evt);
             }
         });
 
@@ -90,30 +133,28 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(planIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(addPlanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(planNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(costPerMonthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(planIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(planNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(costPerMonthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(costPerYearLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(planIdTextField)
+                            .addComponent(planIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                             .addComponent(planNameTextField)
-                            .addComponent(costPerMonthTextField)
-                            .addComponent(costPerYearTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                            .addComponent(costPerMonthTextField)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(savePlanButton)))
+                        .addGap(24, 24, 24)
+                        .addComponent(updateInsurancePlanButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(deleteInsurancePlanButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(viewPlanDetailsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                    .addComponent(viewPlanDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -136,42 +177,95 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(costPerMonthLabel)
                             .addComponent(costPerMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(costPerYearLabel)
-                            .addComponent(costPerYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(savePlanButton)))
+                            .addComponent(addPlanButton)
+                            .addComponent(updateInsurancePlanButton))))
                 .addGap(33, 33, 33)
                 .addComponent(viewPlanDetailsButton)
-                .addGap(28, 28, 28)
-                .addComponent(deleteInsurancePlanButton)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewPlanDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPlanDetailsButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = insurancePlansJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            String planId = insurancePlansJTable.getValueAt(selectedRow, 0).toString();
+            String planName = insurancePlansJTable.getValueAt(selectedRow, 1).toString();
+            String costPerMonth = insurancePlansJTable.getValueAt(selectedRow, 2).toString();
+            
+            planIdTextField.setText(String.valueOf(planId));
+            planNameTextField.setText(String.valueOf(planName));
+            costPerMonthTextField.setText(String.valueOf(costPerMonth));
+            
+            planIdTextField.setEnabled(false);
+            
+            updateInsurancePlanButton.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row!");
+        }
     }//GEN-LAST:event_viewPlanDetailsButtonActionPerformed
 
-    private void deleteInsurancePlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteInsurancePlanButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteInsurancePlanButtonActionPerformed
+    private void addPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlanButtonActionPerformed
+        String planId = planIdTextField.getText();
+        String planName = planNameTextField.getText();
+        String costPerMonth = costPerMonthTextField.getText();
+        
+        InsurancePlanCatalog insurancePlanCatalog = this.catalog.getInsurancePlans();                
+        insurancePlanCatalog.createInsurancePlan(planId, planName, Double.valueOf(costPerMonth));
+        displayInsurancePlans();
+        
+        planIdTextField.setText("");
+        planNameTextField.setText("");
+        costPerMonthTextField.setText("");
+    }//GEN-LAST:event_addPlanButtonActionPerformed
+
+    private void updateInsurancePlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInsurancePlanButtonActionPerformed
+        // update the observation object
+        if (!planIdTextField.getText().isEmpty()) {
+            InsurancePlan ip = this.catalog.getInsurancePlans().findInsurancePlan(planIdTextField.getText());
+            ip.setPlanName(planNameTextField.getText());
+            ip.setCostPerMonth(Double.valueOf(costPerMonthTextField.getText()));
+            ip.setCostPerYear(Double.valueOf(costPerMonthTextField.getText()));
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to update");
+        }
+        
+        planIdTextField.setEnabled(true);
+        
+        planIdTextField.setText("");
+        planNameTextField.setText("");
+        costPerMonthTextField.setText("");
+        
+        displayInsurancePlans();
+        
+        updateInsurancePlanButton.setEnabled(false);
+    }//GEN-LAST:event_updateInsurancePlanButtonActionPerformed
+
+    private void planIdTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_planIdTextFieldFocusLost
+        String planId = planIdTextField.getText();
+        Boolean isUnique = this.catalog.getInsurancePlans().checkIfPlanExists(planId);
+        if(isUnique) {
+            
+        } else {
+            planIdTextField.setText("");
+            JOptionPane.showMessageDialog(null, "Insurance plan already exists");
+        }
+    }//GEN-LAST:event_planIdTextFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addPlanButton;
     private javax.swing.JLabel costPerMonthLabel;
     private javax.swing.JTextField costPerMonthTextField;
-    private javax.swing.JLabel costPerYearLabel;
-    private javax.swing.JTextField costPerYearTextField;
-    private javax.swing.JButton deleteInsurancePlanButton;
     private javax.swing.JTable insurancePlansJTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel planIdLabel;
     private javax.swing.JTextField planIdTextField;
     private javax.swing.JLabel planNameLabel;
     private javax.swing.JTextField planNameTextField;
-    private javax.swing.JButton savePlanButton;
+    private javax.swing.JButton updateInsurancePlanButton;
     private javax.swing.JButton viewPlanDetailsButton;
     // End of variables declaration//GEN-END:variables
 }

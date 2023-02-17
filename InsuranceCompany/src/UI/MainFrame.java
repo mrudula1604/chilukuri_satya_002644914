@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Business.Catalog;
+
 /**
  *
  * @author Prasad
@@ -13,8 +15,12 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    
+    private Catalog catalog;
+    
     public MainFrame() {
         initComponents();
+        this.catalog = new Catalog();
     }
 
     /**
@@ -121,11 +127,11 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vaccinesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccinesButtonActionPerformed
-        jSplitPane1.setRightComponent(new VaccinesJPanel());
+        jSplitPane1.setRightComponent(new VaccinesJPanel(this.catalog));
     }//GEN-LAST:event_vaccinesButtonActionPerformed
 
     private void insurancePlansButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insurancePlansButtonActionPerformed
-        jSplitPane1.setRightComponent(new InsurancePlansJPanel());
+        jSplitPane1.setRightComponent(new InsurancePlansJPanel(this.catalog));
     }//GEN-LAST:event_insurancePlansButtonActionPerformed
 
     private void createApplicationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createApplicationButtonActionPerformed

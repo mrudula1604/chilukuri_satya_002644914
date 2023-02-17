@@ -8,6 +8,13 @@ package Business;
  *
  * @author Prasad
  */
-public class ApplicantDirectory {
+public class Application {
+    
+    /*
+     string applicantId,
+     string firstName,
+     string lastName,
+     date applicationDate
+    */
     
 }
