@@ -40,7 +40,7 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
     
     public void displayInsurancePlans() {
         ArrayList<InsurancePlan> insurancePlans = this.catalog.getInsurancePlans().getInsurancePlans();
-        if(insurancePlans.size() > 0) {
+        if(insurancePlans.size() >= 0) {
             insurancePlansTableModel.setRowCount(0);
             for(InsurancePlan ip: insurancePlans) {
                 Object row[] = new Object[4];

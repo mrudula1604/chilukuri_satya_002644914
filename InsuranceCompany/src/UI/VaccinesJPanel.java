@@ -36,7 +36,7 @@ public class VaccinesJPanel extends javax.swing.JPanel {
     
     public void displayVaccines() {
         ArrayList<Vaccine> vaccines = this.catalog.getVaccines().getVaccines();
-        if(vaccines.size() > 0) {
+        if(vaccines.size() >= 0) {
             vaccinesTableModel.setRowCount(0);
             for(Vaccine vac: vaccines) {
                 Object row[] = new Object[2];

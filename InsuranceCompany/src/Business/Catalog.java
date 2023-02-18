@@ -12,10 +12,12 @@ package Business;
 public class Catalog {
     VaccineCatalog vaccines;
     InsurancePlanCatalog insurancePlans;
+    ApplicationDirectory appDirectory;
     
     public Catalog() {
         this.vaccines = new VaccineCatalog();
         this.insurancePlans = new InsurancePlanCatalog();
+        this.appDirectory = new ApplicationDirectory();
     }
 
     public VaccineCatalog getVaccines() {
@@ -32,6 +34,15 @@ public class Catalog {
 
     public void setInsurancePlanCatalog(InsurancePlanCatalog insurancePlans) {
         this.insurancePlans = insurancePlans;
+    }
+    
+    public ApplicationDirectory getAppDirectory()
+    {
+        return this.appDirectory;
+    }
+    
+    public void setAppDirectory(ApplicationDirectory appDirectory) {
+        this.appDirectory = appDirectory;
     }
     
     

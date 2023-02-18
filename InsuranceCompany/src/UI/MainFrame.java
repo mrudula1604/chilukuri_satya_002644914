@@ -36,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         applicationsButton = new javax.swing.JButton();
         insurancePlansButton = new javax.swing.JButton();
-        petsButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         vaccinesButton = new javax.swing.JButton();
         createApplicationButton = new javax.swing.JButton();
 
@@ -58,7 +58,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        petsButton.setText("Pets");
+        searchButton.setText("Search Applications");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         vaccinesButton.setText("Vaccines");
         vaccinesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(applicationsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(insurancePlansButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(petsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(vaccinesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createApplicationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap(68, Short.MAX_VALUE))
@@ -98,7 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(insurancePlansButton)
                 .addGap(18, 18, 18)
-                .addComponent(petsButton)
+                .addComponent(searchButton)
                 .addGap(18, 18, 18)
                 .addComponent(vaccinesButton)
                 .addContainerGap(251, Short.MAX_VALUE))
@@ -135,12 +140,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_insurancePlansButtonActionPerformed
 
     private void createApplicationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createApplicationButtonActionPerformed
-        jSplitPane1.setRightComponent(new CreateApplicationJPanel());
+        jSplitPane1.setRightComponent(new CreateApplicationJPanel(this.catalog));
     }//GEN-LAST:event_createApplicationButtonActionPerformed
 
     private void applicationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationsButtonActionPerformed
-        jSplitPane1.setRightComponent(new ViewApplicationJPanel());
+        jSplitPane1.setRightComponent(new ViewApplicationJPanel(this.catalog));
     }//GEN-LAST:event_applicationsButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        jSplitPane1.setRightComponent(new SearchApplicationsJPanel(this.catalog));
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +192,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton insurancePlansButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton petsButton;
+    private javax.swing.JButton searchButton;
     private javax.swing.JButton vaccinesButton;
     // End of variables declaration//GEN-END:variables
 }
