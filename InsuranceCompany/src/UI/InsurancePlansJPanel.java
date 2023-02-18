@@ -211,22 +211,36 @@ public class InsurancePlansJPanel extends javax.swing.JPanel {
         String planName = planNameTextField.getText();
         String costPerMonth = costPerMonthTextField.getText();
         
-        InsurancePlanCatalog insurancePlanCatalog = this.catalog.getInsurancePlans();                
-        insurancePlanCatalog.createInsurancePlan(planId, planName, Double.valueOf(costPerMonth));
-        displayInsurancePlans();
+        if (planId.isBlank() || planName.isBlank() || costPerMonth.isBlank())
+        {
+            JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
+        }
+        else{
         
-        planIdTextField.setText("");
-        planNameTextField.setText("");
-        costPerMonthTextField.setText("");
+            InsurancePlanCatalog insurancePlanCatalog = this.catalog.getInsurancePlans();                
+            insurancePlanCatalog.createInsurancePlan(planId, planName, Double.valueOf(costPerMonth));
+            displayInsurancePlans();
+
+            planIdTextField.setText("");
+            planNameTextField.setText("");
+            costPerMonthTextField.setText("");
+        }
     }//GEN-LAST:event_addPlanButtonActionPerformed
 
     private void updateInsurancePlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInsurancePlanButtonActionPerformed
         // update the observation object
         if (!planIdTextField.getText().isEmpty()) {
             InsurancePlan ip = this.catalog.getInsurancePlans().findInsurancePlan(planIdTextField.getText());
-            ip.setPlanName(planNameTextField.getText());
-            ip.setCostPerMonth(Double.valueOf(costPerMonthTextField.getText()));
-            ip.setCostPerYear(Double.valueOf(costPerMonthTextField.getText()));
+            if (planNameTextField.getText().isBlank() || costPerMonthTextField.getText().isBlank() 
+                    || costPerMonthTextField.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
+            }
+            else{
+                ip.setPlanName(planNameTextField.getText());
+                ip.setCostPerMonth(Double.valueOf(costPerMonthTextField.getText()));
+                ip.setCostPerYear(Double.valueOf(costPerMonthTextField.getText()));
+            }
             
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row to update");

@@ -112,10 +112,6 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
         viewApplicationsTable = new javax.swing.JTable();
         viewApplicantButton = new javax.swing.JButton();
         deleteApplicationButton = new javax.swing.JButton();
-        searchAppIdTextField = new javax.swing.JTextField();
-        searchAppIdButton = new javax.swing.JButton();
-        searchFirstNameTextField = new javax.swing.JTextField();
-        searchFirstNameButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         vaccineSelectionTable = new javax.swing.JTable();
         appDateLabel = new javax.swing.JLabel();
@@ -191,22 +187,6 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
                 deleteApplicationButtonActionPerformed(evt);
             }
         });
-
-        searchAppIdTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAppIdTextFieldActionPerformed(evt);
-            }
-        });
-
-        searchAppIdButton.setText("Search using AppId");
-
-        searchFirstNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchFirstNameTextFieldActionPerformed(evt);
-            }
-        });
-
-        searchFirstNameButton.setText("Search using FirstName");
 
         vaccineSelectionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -295,39 +275,23 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(searchFirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchFirstNameButton))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(searchAppIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(96, 96, 96)
-                            .addComponent(searchAppIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(viewApplicantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(deleteApplicationButton))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                        .addGap(46, 46, 46)
+                        .addComponent(deleteApplicationButton)))
                 .addContainerGap(415, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(applicationIdLabel)
-                    .addComponent(applicationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAppIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAppIdButton))
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchFirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchFirstNameButton)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(applicationIdLabel)
+                            .addComponent(applicationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(applicantFirstNameLabel)
@@ -335,22 +299,8 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(applicantLastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(viewApplicantButton)
-                            .addComponent(deleteApplicationButton))
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                            .addComponent(applicantLastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appDateLabel)
                             .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -383,9 +333,18 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
                             .addComponent(petInsurancePlanLabel)
                             .addComponent(insurancePlanCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addComponent(viewPanelSaveButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(78, 78, 78))
+                        .addComponent(viewPanelSaveButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(viewApplicantButton)
+                            .addComponent(deleteApplicationButton))
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -429,14 +388,6 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_viewApplicantButtonActionPerformed
 
-    private void searchAppIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAppIdTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchAppIdTextFieldActionPerformed
-
-    private void searchFirstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFirstNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchFirstNameTextFieldActionPerformed
-
     private void viewPanelSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPanelSaveButtonActionPerformed
         String appId = applicationIdTextField.getText();
         String applicantFirstName = applicantFirstNameTextField.getText();
@@ -454,44 +405,55 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
         }
         else
         {
+            
             String insurancePlan = insurancePlanCbox.getSelectedItem().toString();
-        
-            InsurancePlan selectedInsPlan = this.catalog.getInsurancePlans().findInsurancePlan(insurancePlan);
-
-            //get selected vaccines
-            ArrayList<Vaccine> selectedVaccines = new ArrayList<Vaccine>();
-
-            int[] selectedRows = vaccineSelectionTable.getSelectedRows();
-            if (selectedRows.length > 0) {           
-                for (int selectedRow : selectedRows)
-                {
-                    Vaccine currentSelection = (Vaccine) this.catalog.getVaccines()
-                            .findVaccine(vaccineSelectionTable.getValueAt(selectedRow, 0).toString());
-                    selectedVaccines.add(currentSelection);
-                }
+            
+            if (appId.isBlank() || applicantFirstName.isBlank() || applicantLastName.isBlank()
+                || applicationDate.toString().isBlank() || petName.isBlank() || petAge.isBlank()
+                || petType.isBlank() || petGender.isBlank() || petBreed.isBlank()
+                || insurancePlan.isBlank())
+            {
+                JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
             }
+            
+            else{
+                InsurancePlan selectedInsPlan = this.catalog.getInsurancePlans().findInsurancePlan(insurancePlan);
 
-            ApplicationDirectory appDirectory = this.catalog.getAppDirectory();
+                //get selected vaccines
+                ArrayList<Vaccine> selectedVaccines = new ArrayList<Vaccine>();
 
-            appDirectory.removeApplication(appId);
-            appDirectory.createApplication(
-                    appId, applicantFirstName, applicantLastName, applicationDate,
-                    petName, Float.valueOf(petAge), petBreed, petType, petGender, selectedVaccines,
-                    selectedInsPlan
-            );
+                int[] selectedRows = vaccineSelectionTable.getSelectedRows();
+                if (selectedRows.length > 0) {           
+                    for (int selectedRow : selectedRows)
+                    {
+                        Vaccine currentSelection = (Vaccine) this.catalog.getVaccines()
+                                .findVaccine(vaccineSelectionTable.getValueAt(selectedRow, 0).toString());
+                        selectedVaccines.add(currentSelection);
+                    }
+                }
 
-            displayApplications();
+                ApplicationDirectory appDirectory = this.catalog.getAppDirectory();
 
-            applicationIdTextField.setText("");
-            applicantFirstNameTextField.setText("");
-            applicantLastNameTextField.setText("");
-            petNameTextField.setText("");
-            ageTextField.setText("");
-            petTypeTextField.setText("");
-            genderTextField.setText("");
-            petBreedTextField.setText("");
-            insurancePlanCbox.setSelectedIndex(0);
-            vaccineSelectionTable.clearSelection();
+                appDirectory.removeApplication(appId);
+                appDirectory.createApplication(
+                        appId, applicantFirstName, applicantLastName, applicationDate,
+                        petName, Float.valueOf(petAge), petBreed, petType, petGender, selectedVaccines,
+                        selectedInsPlan
+                );
+
+                displayApplications();
+
+                applicationIdTextField.setText("");
+                applicantFirstNameTextField.setText("");
+                applicantLastNameTextField.setText("");
+                petNameTextField.setText("");
+                ageTextField.setText("");
+                petTypeTextField.setText("");
+                genderTextField.setText("");
+                petBreedTextField.setText("");
+                insurancePlanCbox.setSelectedIndex(0);
+                vaccineSelectionTable.clearSelection();            
+            }
         }
         
         
@@ -537,10 +499,6 @@ public class ViewApplicationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel petTypeLabel;
     private javax.swing.JTextField petTypeTextField;
     private javax.swing.JLabel petVaccinationsLabel;
-    private javax.swing.JButton searchAppIdButton;
-    private javax.swing.JTextField searchAppIdTextField;
-    private javax.swing.JButton searchFirstNameButton;
-    private javax.swing.JTextField searchFirstNameTextField;
     private javax.swing.JTable vaccineSelectionTable;
     private javax.swing.JButton viewApplicantButton;
     private javax.swing.JTable viewApplicationsTable;

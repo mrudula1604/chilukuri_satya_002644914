@@ -35,13 +35,17 @@ public class SearchApplicationsJPanel extends javax.swing.JPanel {
         if(applications.size() >= 0) {
             searchResultsTableModel.setRowCount(0);
             for(Application app: applications) {
-                Object row[] = new Object[6];
+                Object row[] = new Object[10];
                 row[0] = app.getApplicationId();
                 row[1] = app.getApplicantFirstName();
                 row[2] = app.getApplicantLastName();
-                row[3] = app.getPetName();
-                row[4] = app.getPetInsurancePlan().getPlanId();
-                row[5] = app.getApplicationDate().toString();
+                row[3] = app.getApplicationDate().toString();
+                row[4] = app.getPetName();
+                row[5] = app.getBreed();
+                row[6] = app.getAge();
+                row[7] = app.getPetType();
+                row[8] = app.getPetGender();
+                row[9] = app.getPetInsurancePlan().getPlanId();
                 searchResultsTableModel.addRow(row);
             }
         }
@@ -66,17 +70,17 @@ public class SearchApplicationsJPanel extends javax.swing.JPanel {
 
         searchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ApplicantID", "FirstName", "LastName", "Pet Name", "Insurance Plan", "Application Date"
+                "ApplicantID", "FirstName", "LastName", "Application Date", "Pet Name", "PetBreed", "PetAge", "PetType", "PetGender", "Insurance Plan"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,26 +137,26 @@ public class SearchApplicationsJPanel extends javax.swing.JPanel {
                         .addComponent(searchAppIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(searchAppIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearResultsButton))
-                .addContainerGap(468, Short.MAX_VALUE))
+                    .addComponent(clearResultsButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchAppIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchAppIdTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchAppIdButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchFirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchFirstNameButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(clearResultsButton)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(474, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

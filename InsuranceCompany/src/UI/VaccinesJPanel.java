@@ -64,7 +64,6 @@ public class VaccinesJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         vaccinesJTable = new javax.swing.JTable();
         viewVaccineDetailsButton = new javax.swing.JButton();
-        deleteVaccineButton = new javax.swing.JButton();
         updateVaccineButton = new javax.swing.JButton();
 
         vaccineNameLabel.setText("Vaccine Name");
@@ -124,13 +123,6 @@ public class VaccinesJPanel extends javax.swing.JPanel {
             }
         });
 
-        deleteVaccineButton.setText("Delete Vaccine");
-        deleteVaccineButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteVaccineButtonActionPerformed(evt);
-            }
-        });
-
         updateVaccineButton.setText("Update");
         updateVaccineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +149,7 @@ public class VaccinesJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(deleteVaccineButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(viewVaccineDetailsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(viewVaccineDetailsButton))
                 .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
@@ -182,9 +172,7 @@ public class VaccinesJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(viewVaccineDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(deleteVaccineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,12 +184,20 @@ public class VaccinesJPanel extends javax.swing.JPanel {
         String name = vaccineNameTextField.getText();
         String dosage = vaccineDosageTextField.getText();
         
-        VaccineCatalog vaccineCatalog = this.catalog.getVaccines();                
-        vaccineCatalog.createVaccine(name, Double.valueOf(dosage));
-        displayVaccines();
+        if (name.isBlank() || dosage.isBlank())
+        {
+            JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
+        }
+        else{
+            VaccineCatalog vaccineCatalog = this.catalog.getVaccines();                
+            vaccineCatalog.createVaccine(name, Double.valueOf(dosage));
+            displayVaccines();
+
+            vaccineNameTextField.setText("");
+            vaccineDosageTextField.setText("");
+        }
         
-        vaccineNameTextField.setText("");
-        vaccineDosageTextField.setText("");
+        
     }//GEN-LAST:event_addVaccineButtonActionPerformed
 
     private void vaccineNameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_vaccineNameTextFieldFocusLost
@@ -214,17 +210,6 @@ public class VaccinesJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vaccine already exists");
         }
     }//GEN-LAST:event_vaccineNameTextFieldFocusLost
-
-    private void deleteVaccineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVaccineButtonActionPerformed
-        int selectedRow = vaccinesJTable.getSelectedRow();  
-        if(selectedRow >= 0) {
-            String vaccineName =  vaccinesJTable.getValueAt(selectedRow, 0).toString();
-            this.catalog.getVaccines().removeVaccine(vaccineName); 
-            displayVaccines();
-        } else {
-            
-        }
-    }//GEN-LAST:event_deleteVaccineButtonActionPerformed
 
     private void viewVaccineDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewVaccineDetailsButtonActionPerformed
         int selectedRow = vaccinesJTable.getSelectedRow();
@@ -246,8 +231,14 @@ public class VaccinesJPanel extends javax.swing.JPanel {
         // update the observation object
         if (!vaccineNameTextField.getText().isEmpty()) {
             Vaccine vac = this.catalog.getVaccines().findVaccine(vaccineNameTextField.getText());
-            vac.setVaccineName(vaccineNameTextField.getText());
-            vac.setDosage(Double.valueOf(vaccineDosageTextField.getText()));
+            if (vaccineDosageTextField.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
+            }
+            else{
+                vac.setVaccineName(vaccineNameTextField.getText());
+                vac.setDosage(Double.valueOf(vaccineDosageTextField.getText()));
+            }
             
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row to update");
@@ -264,7 +255,6 @@ public class VaccinesJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addVaccineButton;
-    private javax.swing.JButton deleteVaccineButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton updateVaccineButton;

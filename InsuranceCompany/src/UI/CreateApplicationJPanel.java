@@ -264,39 +264,48 @@ public class CreateApplicationJPanel extends javax.swing.JPanel {
         
         String insurancePlan = insurancePlanCbox.getSelectedItem().toString();
         
-        InsurancePlan selectedInsPlan = this.catalog.getInsurancePlans().findInsurancePlan(insurancePlan);
-        
-        //get selected vaccines
-        ArrayList<Vaccine> selectedVaccines = new ArrayList<Vaccine>();
-        
-        int[] selectedRows = vaccineSelectionTable.getSelectedRows();
-        if (selectedRows.length > 0) {           
-            for (int selectedRow : selectedRows)
-            {
-                Vaccine currentSelection = (Vaccine) this.catalog.getVaccines().findVaccine(vaccineSelectionTable.getValueAt(selectedRow, 0).toString());
-                selectedVaccines.add(currentSelection);
-            }
+        if (appId.isBlank() || applicantFirstName.isBlank() || applicantLastName.isBlank()
+                || applicationDate.toString().isBlank() || petName.isBlank() || petAge.isBlank()
+                || petType.isBlank() || petGender.isBlank() || petBreed.isBlank()
+                || insurancePlan.isBlank())
+        {
+            JOptionPane.showMessageDialog(null, "Please fill all fields. No empty values allowed");
         }
+        else{
+            InsurancePlan selectedInsPlan = this.catalog.getInsurancePlans().findInsurancePlan(insurancePlan);
         
-        ApplicationDirectory appDirectory = this.catalog.getAppDirectory();                
-        appDirectory.createApplication(
-                appId, applicantFirstName, applicantLastName, applicationDate,
-                petName, Float.valueOf(petAge), petBreed, petType, petGender, selectedVaccines,
-                selectedInsPlan
-        );
-        
-        //displayVaccines();
-        
-        applicationIdTextField.setText("");
-        applicantFirstNameTextField.setText("");
-        applicantLastNameTextField.setText("");
-        petNameTextField.setText("");
-        ageTextField.setText("");
-        petTypeTextField.setText("");
-        genderTextField.setText("");
-        petBreedTextField.setText("");
-        insurancePlanCbox.setSelectedIndex(0);
-        vaccineSelectionTable.clearSelection();
+            //get selected vaccines
+            ArrayList<Vaccine> selectedVaccines = new ArrayList<Vaccine>();
+
+            int[] selectedRows = vaccineSelectionTable.getSelectedRows();
+            if (selectedRows.length > 0) {           
+                for (int selectedRow : selectedRows)
+                {
+                    Vaccine currentSelection = (Vaccine) this.catalog.getVaccines().findVaccine(vaccineSelectionTable.getValueAt(selectedRow, 0).toString());
+                    selectedVaccines.add(currentSelection);
+                }
+            }
+
+            ApplicationDirectory appDirectory = this.catalog.getAppDirectory();                
+            appDirectory.createApplication(
+                    appId, applicantFirstName, applicantLastName, applicationDate,
+                    petName, Float.valueOf(petAge), petBreed, petType, petGender, selectedVaccines,
+                    selectedInsPlan
+            );
+
+            //displayVaccines();
+
+            applicationIdTextField.setText("");
+            applicantFirstNameTextField.setText("");
+            applicantLastNameTextField.setText("");
+            petNameTextField.setText("");
+            ageTextField.setText("");
+            petTypeTextField.setText("");
+            genderTextField.setText("");
+            petBreedTextField.setText("");
+            insurancePlanCbox.setSelectedIndex(0);
+            vaccineSelectionTable.clearSelection();
+        }   
     }//GEN-LAST:event_saveApplicationButtonActionPerformed
 
     private void applicationIdTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_applicationIdTextFieldFocusLost
