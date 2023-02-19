@@ -6,7 +6,7 @@ package Business;
 
 /**
  *
- * @author Mrudula
+ * @author Chilukuri
  */
 public class InsurancePlan {
     String planId;

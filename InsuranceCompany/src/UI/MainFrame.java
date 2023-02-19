@@ -8,7 +8,7 @@ import Business.Catalog;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class MainFrame extends javax.swing.JFrame {
 

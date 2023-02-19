@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class ApplicationDirectory {
     ArrayList<Application> applicationsList;

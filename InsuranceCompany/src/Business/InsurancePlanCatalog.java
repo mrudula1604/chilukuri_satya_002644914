@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class InsurancePlanCatalog {
      ArrayList<InsurancePlan> insurancePlans;

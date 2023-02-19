@@ -17,7 +17,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class SearchApplicationsJPanel extends javax.swing.JPanel {
 

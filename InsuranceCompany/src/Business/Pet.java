@@ -6,7 +6,7 @@ package Business;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class Pet {
     

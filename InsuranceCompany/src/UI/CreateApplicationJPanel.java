@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class CreateApplicationJPanel extends javax.swing.JPanel {
 

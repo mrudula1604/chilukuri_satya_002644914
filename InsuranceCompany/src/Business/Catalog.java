@@ -7,7 +7,7 @@ package Business;
 
 /**
  *
- * @author Mrudula
+ * @author Chilukuri
  */
 public class Catalog {
     VaccineCatalog vaccines;
