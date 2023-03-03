@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author Nidhi Raghavendra
  */
 public class Branch {
+    String BranchId;
     String name;
     UserAccountDirectory branchuseraccountDirectory;
     Library library; 
@@ -22,6 +23,20 @@ public class Branch {
         this.name = name;
         this.branchuseraccountDirectory = new UserAccountDirectory();
         this.library = library;
+    }
+    
+    public Branch(String branchId, String name)
+    {
+        this.BranchId = branchId;
+        this.name = name;
+    }
+    
+    public String getBranchId() {
+        return BranchId;
+    }
+
+    public void setBranchId(String BranchId) {
+        this.BranchId = BranchId;
     }
 
     public String getName() {

@@ -127,7 +127,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public void populateDropdown() {
         comboBoxRole.removeAllItems();
         
-        for(String rolename: Role.getAllRoles()) {
+        for(String rolename: Role.getRoles()) {
             comboBoxRole.addItem(rolename);
         }
     }

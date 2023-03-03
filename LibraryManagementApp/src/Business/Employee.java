@@ -8,25 +8,16 @@ package Business;
  *
  * @author Prasad
  */
-public class Employee {
-    private String employeeId;
-    private String employeeName;
+public class Employee extends Person {
     private String designation;
     private float yearsOfExperience;
 
     public Employee(String empId, String name, String designation, float experience) {
-        this.employeeId = empId;
-        this.employeeName = name;
+        super();
+        this.id = empId;
+        this.name = name;
         this.designation = designation;
         this.yearsOfExperience = experience;
-    }
-
-    public String getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getDesignation() {
@@ -47,6 +38,6 @@ public class Employee {
     
     @Override
     public String toString(){
-        return this.employeeId;
+        return this.id;
     }    
 }

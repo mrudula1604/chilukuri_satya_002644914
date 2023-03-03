@@ -5,6 +5,8 @@
  */
 package Services;
 
+import Business.Branch;
+import Business.Library;
 import Customer.Customer;
 
 /**
@@ -14,28 +16,44 @@ import Customer.Customer;
 public class RentalRequest {
     
     Customer customer;
+    Branch branch;
+    Library library;
     private static int count = 0;
     String orderId;
     String status;
     
-    public RentalRequest() {
-        this.customer = new Customer();
-        this.status = "Rented";
-        this.count++;
-        
-        this.orderId = "Rental_NO"+this.count;
-    }
-    
-    public RentalRequest(Customer customer) {
+    public RentalRequest(Customer customer, Branch branch, Library library) {
         this.customer = customer;
-        this.status = "Rented";
+        this.branch = branch;
+        this.library = library;
+        this.status = "requested";
         this.count++;
         
         this.orderId = "Rental_NO"+this.count;
     }
 
+    RentalRequest() {
+       
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+    
     public Customer getCustomer() {
         return customer;
+    }
+    
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public void setCustomer(Customer customer) {

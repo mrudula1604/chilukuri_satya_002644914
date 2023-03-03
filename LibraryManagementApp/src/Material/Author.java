@@ -19,4 +19,9 @@ public class Author {
         this.authorName = authorName;
     }
     
+    @Override
+    public String toString(){
+        return this.authorName;
+    }
+    
 }

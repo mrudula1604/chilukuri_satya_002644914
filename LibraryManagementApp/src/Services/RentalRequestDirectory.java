@@ -5,6 +5,8 @@
  */
 package Services;
 
+import Business.Branch;
+import Business.Library;
 import Customer.Customer;
 import java.util.ArrayList;
 
@@ -29,18 +31,19 @@ public class RentalRequestDirectory {
     }
     
     // create a new order
-    public RentalRequest createOrder(Customer customer) {
-        RentalRequest o = new RentalRequest(customer);
+    public RentalRequest createOrder(Customer customer, Branch branch, Library library) {
+        RentalRequest o = new RentalRequest(customer, branch, library);
         this.rentalList.add(o);
         return o;
     }
     
-    public RentalRequest requestOrder(Customer customer) {
-        RentalRequest o = new RentalRequest();
-        o.setCustomer(customer);
-        
-        this.rentalList.add(o);
-        return o;
+    public void approveRequest(String orderId) {
+       //
+    }
+    
+    public void returnRental()
+    {
+    
     }
     
 }
