@@ -6,9 +6,11 @@
 package UI.CustomerPanels;
 
 import Business.Branch;
+import Business.BranchDirectory;
 import Business.Business;
 import UI.MainJFrame;
 import Business.UserAccount;
+import Customer.Customer;
 
 /**
  *
@@ -16,9 +18,8 @@ import Business.UserAccount;
  */
 public class CustomerJFrame extends javax.swing.JFrame {
 
-    private Business business;
-    private Branch branch;
-    private UserAccount useraccount;
+    private BranchDirectory branches;
+    private Customer customer;
 
     /**
      * Creates new form CustomerJFrame
@@ -26,14 +27,13 @@ public class CustomerJFrame extends javax.swing.JFrame {
     public CustomerJFrame() {
         initComponents();
     }
-
-    public CustomerJFrame(Business business, Branch branch, UserAccount useraccount) {
+    
+    public CustomerJFrame(BranchDirectory branches, Customer customer) {
        initComponents();
        this.setVisible(true);
        
-       this.business = business;
-       this.branch = branch;
-       this.useraccount = useraccount;
+       this.branches = branches;
+       this.customer = customer;
     }
 
     /**
@@ -47,27 +47,27 @@ public class CustomerJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        custViewBooksBtn = new javax.swing.JButton();
+        custViewMagsBtn = new javax.swing.JButton();
+        custRenRequestBtn = new javax.swing.JButton();
+        custLogoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(200);
 
-        jButton1.setText("Books");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        custViewBooksBtn.setText("Books");
+        custViewBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                custViewBooksBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Magazines");
+        custViewMagsBtn.setText("Magazines");
 
-        jButton3.setText("Rental Requests");
+        custRenRequestBtn.setText("Rental Requests");
 
-        jButton4.setText("Logout");
+        custLogoutBtn.setText("Logout");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -76,23 +76,23 @@ public class CustomerJFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(custViewMagsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(custViewBooksBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(custRenRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(custLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(jButton1)
+                .addComponent(custViewBooksBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(custViewMagsBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(custRenRequestBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(custLogoutBtn)
                 .addContainerGap(411, Short.MAX_VALUE))
         );
 
@@ -103,9 +103,9 @@ public class CustomerJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void custViewBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custViewBooksBtnActionPerformed
+        jSplitPane1.setRightComponent(new BooksJPanel(this.branches, this.customer));
+    }//GEN-LAST:event_custViewBooksBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,10 +143,10 @@ public class CustomerJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton custLogoutBtn;
+    private javax.swing.JButton custRenRequestBtn;
+    private javax.swing.JButton custViewBooksBtn;
+    private javax.swing.JButton custViewMagsBtn;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables

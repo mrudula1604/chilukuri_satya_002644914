@@ -26,4 +26,28 @@ public class MagazineDirectory {
         this.magazinesList = magazinesList;
     }
     
+    public Magazine addMagazine(Magazine magazine) {
+        this.magazinesList.add(magazine);
+        return magazine;
+    }
+    
+    public boolean checkIfMagazineExists(String serialNumber)
+    {
+        for(Magazine b: this.magazinesList) {
+            if(b.getSerialNumber().equals(serialNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Magazine findMagazine(String serialNumber){
+        for(Magazine b: this.magazinesList) {
+            if(b.getSerialNumber().equals(serialNumber)) {
+                return b;
+            }
+        }
+        return null;
+    }
+    
 }

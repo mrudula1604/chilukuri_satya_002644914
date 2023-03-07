@@ -24,14 +24,12 @@ public class BooksJPanel extends javax.swing.JPanel {
      * Creates new form Books
      */
     
-    private Business business;
-    private UserAccount user;
+    private Branch branch;
     DefaultTableModel booksTableModel;
     
-    public BooksJPanel(Business business, UserAccount user) {
+    public BooksJPanel(Branch branch) {
         initComponents();
-        this.business = business;
-        this.user = user; 
+        this.branch = branch;
         this.booksTableModel = (DefaultTableModel) bmBooksJTable.getModel();
         
         displayBooks();
@@ -95,20 +93,7 @@ public class BooksJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void displayBooks() {
-        ArrayList<Book> books = new ArrayList<Book>();
-        ArrayList<Branch> allBranches = this.business.getBranches().getBranchesList();
-        for(Branch b : allBranches){
-            Library l = b.getLibrary();
-            ArrayList<Employee> emps = l.getEmployees().getEmployees();
-            for (Employee e : emps)
-            {
-                if(this.user.getPersonId().equals(e.getPersonID()))
-                {
-                    books = l.getBooks().getBooksList();
-                }
-            }
-            
-        }
+        ArrayList<Book> books = this.branch.getLibrary().getBooks().getBooksList();
         
         if(books.size() >= 0) {
             booksTableModel.setRowCount(0);

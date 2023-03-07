@@ -27,8 +27,16 @@ public class EmployeeDirectory {
         this.employees = employees;
     }
     
-    public Employee addEmployee(String empId, String name, String designation, float experience) {
-        Employee emp = new Employee(empId, name, designation, experience);
+    public Employee addEmployee(String name,
+            String designation, float experience, Branch branch) {
+        Employee emp = new Employee(name, designation, experience, branch);
+        this.employees.add(emp);
+        return emp;
+    }
+    
+    public Employee addEmployee(String empId, String name,
+            String designation, float experience, Branch branch) {
+        Employee emp = new Employee(empId, name, designation, experience, branch);
         this.employees.add(emp);
         return emp;
     }
@@ -47,6 +55,16 @@ public class EmployeeDirectory {
             }
         }      
         return false;
+    }
+    
+    public Employee findEmployee(String empId)
+    {
+        for(Employee e: this.employees) {
+            if(e.getPersonID().equals(empId)) {
+                return e;
+            }
+        }      
+        return null;
     }
     
 }

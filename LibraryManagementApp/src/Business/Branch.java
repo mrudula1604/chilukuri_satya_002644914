@@ -1,6 +1,7 @@
 package Business;
 
 import Business.UserAccountDirectory;
+import Services.RentalRequestDirectory;
 import java.util.ArrayList;
 
 /*
@@ -11,40 +12,47 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public class Branch {
-    String BranchId;
-    String name;
+    private static int count = 0;
+    String branchId;
+    String branchName;
     UserAccountDirectory branchuseraccountDirectory;
     Library library;
     
     public Branch(String name, Library library) {
-        this.name = name;
+        this.branchName = name;
         this.branchuseraccountDirectory = new UserAccountDirectory();
         this.library = library;
     }
     
     public Branch(String branchId, String name)
     {
-        this.BranchId = branchId;
-        this.name = name;
+        this.branchId = branchId;
+        this.branchName = name;
+    }
+    
+    public Branch(String branchName)
+    {
+        this.branchId = "BRANCH-" + count++;
+        this.branchName = branchName;
     }
     
     public String getBranchId() {
-        return BranchId;
+        return branchId;
     }
 
     public void setBranchId(String BranchId) {
-        this.BranchId = BranchId;
+        this.branchId = BranchId;
     }
 
     public String getName() {
-        return name;
+        return branchName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.branchName = name;
     }
 
     public UserAccountDirectory getBranchuseraccountDirectory() {

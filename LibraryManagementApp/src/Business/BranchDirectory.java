@@ -27,8 +27,8 @@ public class BranchDirectory {
         this.branchesList = branchesList;
     }
     
-    public Branch createBranch(String branchId, String branchName, int libraryBuldingNumber) {
-        Branch branch = new Branch(branchId, branchName);
+    public Branch createBranch(String branchName, int libraryBuldingNumber) {
+        Branch branch = new Branch(branchName);
         Library lib = new Library(libraryBuldingNumber);
         branch.setLibrary(lib);
         branchesList.add(branch);
@@ -45,10 +45,10 @@ public class BranchDirectory {
         return null;
     }
     
-    public boolean checkIfBranchExists(String branchId)
+    public boolean checkIfBranchExists(String branchName)
     {
         for(Branch b: this.branchesList) {
-            if(b.getBranchId().equals(branchId)) {
+            if(b.getName().equals(branchName)) {
                 return true;
             }
         }

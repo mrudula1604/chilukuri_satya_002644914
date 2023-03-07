@@ -4,11 +4,27 @@
  */
 package Material;
 
+import java.util.Date;
+
 /**
  *
  * @author Prasad
  */
 public class Book extends Material{
+
+    public Book(String serialNum, String name, Date registeredDate, boolean isAvailable,
+            Author author, Genre genre, int numPages, String language, String bindingType) {
+        super();
+        this.serialNumber = serialNum;
+        this.name = name;
+        this.registeredDate = registeredDate;
+        this.isAvailable = isAvailable;
+        this.author = author;
+        this.genre = genre;
+        this.numPages = numPages;
+        this.language = language;
+        this.bindingType = bindingType;
+    }
     private Author author;
     private Genre genre;
     private int numPages;

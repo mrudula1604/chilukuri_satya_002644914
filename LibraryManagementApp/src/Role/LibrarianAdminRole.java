@@ -7,27 +7,20 @@ package Role;
 
 import Business.Branch;
 import Business.Business;
-import UI.CustomerPanels.CustomerJFrame;
+import UI.BranchManagerPanels.BranchManagerJFrame;
 import Business.UserAccount;
+import UI.LibrarianPanels.LibrarianJFrame;
 import javax.swing.JFrame;
 
 /**
  *
  * @author Nidhi Raghavendra
  */
-public class CustomerRole extends Role {
-    
-    //roles
-    //getallroles
-    //createWorkArea
-    
+public class LibrarianAdminRole extends Role {
 
     @Override
     public JFrame createWorkArea(Business business, Branch branch, UserAccount useraccount) {
-        // return jframe
-        return new CustomerJFrame(business.getBranches(),
-                business.getCustomersList().findCustomer(useraccount.getPersonId()));
-        
+       return new LibrarianJFrame(business, branch, useraccount);
     }
     
 }

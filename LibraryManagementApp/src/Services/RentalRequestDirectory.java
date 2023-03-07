@@ -8,6 +8,7 @@ package Services;
 import Business.Branch;
 import Business.Library;
 import Customer.Customer;
+import Material.Book;
 import java.util.ArrayList;
 
 /**
@@ -31,19 +32,35 @@ public class RentalRequestDirectory {
     }
     
     // create a new order
-    public RentalRequest createOrder(Customer customer, Branch branch, Library library) {
-        RentalRequest o = new RentalRequest(customer, branch, library);
+    public RentalRequest createOrder(Customer customer, Branch branch, String materialId,
+            int duration, float price) {
+        RentalRequest o = new RentalRequest(customer, branch, materialId, duration, price);
         this.rentalList.add(o);
+        
+        RentalRequestDirectory rr = branch.getLibrary().getRentals();
+        rr.getOrderlist().add(o);
         return o;
     }
     
-    public void approveRequest(String orderId) {
-       //
+    public RentalRequest findRentalRequest(String orderId)
+    {
+        for(RentalRequest r: this.rentalList) {
+            if(r.getOrderId().equals(orderId)) {
+                return r;
+            }
+        }
+        return null;
     }
     
-    public void returnRental()
-    {
+    public void approveRequest(String orderId) {
+       RentalRequest currentRR = findRentalRequest(orderId);
+       currentRR.setStatus("Rented");
+    }
     
+    public void returnRental(String orderId)
+    {
+        RentalRequest currentRR = findRentalRequest(orderId);
+       currentRR.setStatus("Returned");
     }
     
 }

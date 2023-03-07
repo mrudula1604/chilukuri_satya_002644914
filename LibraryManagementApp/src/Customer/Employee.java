@@ -4,20 +4,42 @@
  */
 package Customer;
 
+import Business.Branch;
+
 /**
  *
  * @author Prasad
  */
 public class Employee extends Person {
+    private static int count = 0;
+    private Branch branch;
     private String designation;
     private float yearsOfExperience;
 
-    public Employee(String empId, String name, String designation, float experience) {
+    public Employee(String name, String designation, float experience, Branch branch) {
+        super();
+        this.id = "EMP-" + count++;
+        this.name = name;
+        this.designation = designation;
+        this.yearsOfExperience = experience;
+        this.branch = branch;
+    }
+    
+    public Employee(String empId, String name, String designation, float experience, Branch branch) {
         super();
         this.id = empId;
         this.name = name;
         this.designation = designation;
         this.yearsOfExperience = experience;
+        this.branch = branch;
+    }
+    
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public String getDesignation() {

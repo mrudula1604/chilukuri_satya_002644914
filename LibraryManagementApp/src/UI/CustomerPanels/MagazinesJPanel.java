@@ -4,6 +4,15 @@
  */
 package UI.CustomerPanels;
 
+import Business.Branch;
+import Business.BranchDirectory;
+import Customer.Customer;
+import Material.Magazine;
+import Services.RentalRequestDirectory;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,8 +22,43 @@ public class MagazinesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MagazinesJPanel
      */
+    private BranchDirectory branches;
+    private Customer customer;
+    DefaultTableModel magsTableModel;
+    
     public MagazinesJPanel() {
         initComponents();
+        this.branches = branches;
+        this.customer = customer;
+        this.magsTableModel = (DefaultTableModel) custMagsJtable.getModel();
+        
+        //displayBooks();
+        populateBranches();
+    }
+    
+    private void populateBranches()
+    {
+        for(Branch b : this.branches.getBranchesList())
+        {
+            selectBranchCBox.addItem(b.getBranchId());
+        }
+    }
+    
+    private void displayMagazines(ArrayList<Magazine> mags) {
+        if(mags.size() >= 0) {
+            magsTableModel.setRowCount(0);
+            for(Magazine b: mags) {
+                Object row[] = new Object[6];
+                row[0] = b.getSerialNumber();
+                row[1] = b.getName();
+                row[2] = b.getRegisteredDate().toString();
+                row[3] = b.getIsAvailable();
+                row[4] = b.getCompanyName();
+                row[5] = b.getIssueType();
+                magsTableModel.addRow(row);
+            }
+        }
+        
     }
 
     /**
@@ -27,11 +71,17 @@ public class MagazinesJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        custMagsJtable = new javax.swing.JTable();
+        reqMagazineBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        selectBranchCBox = new javax.swing.JComboBox<>();
+        loadMagsBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        magPriceTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        magDurationTextField = new javax.swing.JTextField();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        custMagsJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -50,16 +100,27 @@ public class MagazinesJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(custMagsJtable);
 
-        jButton2.setText("Request");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        reqMagazineBtn.setText("Request");
+        reqMagazineBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                reqMagazineBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Return");
+        jLabel1.setText("Select a Branch");
+
+        loadMagsBtn.setText("Load Magazines");
+        loadMagsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadMagsBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Price");
+
+        jLabel3.setText("Duration");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,33 +131,92 @@ public class MagazinesJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(selectBranchCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(149, 149, 149)
+                        .addComponent(loadMagsBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(magPriceTextField)
+                            .addComponent(magDurationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                        .addGap(92, 92, 92)
+                        .addComponent(reqMagazineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(319, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(selectBranchCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadMagsBtn))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(magPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(magDurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(reqMagazineBtn)))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void reqMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqMagazineBtnActionPerformed
+        int selectedRowIndex = custMagsJtable.getSelectedRow();
+        String bookSerialNo = custMagsJtable.getValueAt(selectedRowIndex, 0).toString();
+        boolean bookisAvailable = Boolean.valueOf(custMagsJtable.getValueAt(selectedRowIndex, 3).toString());
+        if (bookisAvailable)
+        {
+            Float price = Float.valueOf(magPriceTextField.getText());
+            int duration = Integer.valueOf(magDurationTextField.getText());
+
+            String branchId = selectBranchCBox.getSelectedItem().toString();
+            Branch selectedBranch = this.branches.findBranch(branchId);
+
+            RentalRequestDirectory rd = selectedBranch.getLibrary().getRentals();
+            rd.createOrder(customer, selectedBranch, bookSerialNo, duration, price);
+            
+            selectedBranch.getLibrary().getMagazines().findMagazine(branchId).setIsAvailable(false);
+            
+            displayMagazines(selectedBranch.getLibrary().getMagazines().getMagazinesList());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "The selected magazine is not currently available");
+        } 
+    }//GEN-LAST:event_reqMagazineBtnActionPerformed
+
+    private void loadMagsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadMagsBtnActionPerformed
+        String branchId = selectBranchCBox.getSelectedItem().toString();
+        Branch selectedBranch = this.branches.findBranch(branchId);
+        
+        displayMagazines(selectedBranch.getLibrary().getMagazines().getMagazinesList());
+    }//GEN-LAST:event_loadMagsBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTable custMagsJtable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton loadMagsBtn;
+    private javax.swing.JTextField magDurationTextField;
+    private javax.swing.JTextField magPriceTextField;
+    private javax.swing.JButton reqMagazineBtn;
+    private javax.swing.JComboBox<String> selectBranchCBox;
     // End of variables declaration//GEN-END:variables
 }

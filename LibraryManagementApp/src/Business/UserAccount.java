@@ -13,22 +13,22 @@ import Role.Role;
  */
 public class UserAccount {
 
-    //private static int count = 0;
-    //private String accountId;
+    private static int count = 0;
+    private String accountId;
     private String username;
     private String password;
     private Role role;
     private String personId;
 
     public UserAccount() {
-        //this.accountId = "ACC" + count++;
+        this.accountId = "USER-" + count++;
         this.username = username;
         this.password = password;
         this.role = role;        
     }
 
     public UserAccount(String username, String password, Role role, String personId) {
-        //this.accountId = role + count++;
+        this.accountId = "USER-" + count++;
         this.username = username;
         this.password = password;
         this.role = role;

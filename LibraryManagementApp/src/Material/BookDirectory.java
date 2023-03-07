@@ -4,6 +4,8 @@
  */
 package Material;
 
+import Business.Branch;
+import Business.Library;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +26,30 @@ public class BookDirectory {
 
     public void setBooksList(ArrayList<Book> booksList) {
         this.booksList = booksList;
+    }
+    
+    public Book addBook(Book book) {
+        this.booksList.add(book);
+        return book;
+    }
+    
+    public boolean checkIfBookExists(String serialNumber)
+    {
+        for(Book b: this.booksList) {
+            if(b.getSerialNumber().equals(serialNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Book findBook(String serialNumber){
+        for(Book b: this.booksList) {
+            if(b.getSerialNumber().equals(serialNumber)) {
+                return b;
+            }
+        }
+        return null;
     }
     
 }

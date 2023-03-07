@@ -10,6 +10,7 @@ import Material.AuthorDirectory;
 import Material.BookDirectory;
 import Material.GenreDirectory;
 import Material.MagazineDirectory;
+import Services.RentalRequestDirectory;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,15 @@ public class Library {
     private AuthorDirectory authors;
     private GenreDirectory genres;
     private EmployeeDirectory employees;
+    RentalRequestDirectory rentals;
+
+    public RentalRequestDirectory getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(RentalRequestDirectory rentals) {
+        this.rentals = rentals;
+    }
 
     public EmployeeDirectory getEmployees() {
         return employees;
@@ -35,9 +45,11 @@ public class Library {
     public Library(int buildingNumber){
         this.buildingNumber = buildingNumber;
         this.authors = new AuthorDirectory();
+        this.genres = new GenreDirectory();
         this.books = new BookDirectory();
         this.employees = new EmployeeDirectory();
         this.magazines = new MagazineDirectory();
+        this.rentals = new RentalRequestDirectory();
     }
 
     public int getBuildingNumber() {

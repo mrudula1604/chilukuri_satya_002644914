@@ -11,10 +11,10 @@ import java.util.Date;
  * @author Prasad
  */
 public class Material {
-    private String serialNumber;
-    private String name;
-    private Date registeredDate;
-    private boolean isAvailable;
+    String serialNumber;
+    String name;
+    Date registeredDate;
+    boolean isAvailable;
 
     public String getSerialNumber() {
         return serialNumber;

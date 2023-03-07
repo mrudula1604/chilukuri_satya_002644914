@@ -17,31 +17,52 @@ public class RentalRequest {
     
     Customer customer;
     Branch branch;
-    Library library;
     private static int count = 0;
+    String materialId;
+    int duration;
+    float price;
     String orderId;
     String status;
     
-    public RentalRequest(Customer customer, Branch branch, Library library) {
+    public RentalRequest(Customer customer, Branch branch, String materialId,
+            int duration, float price) {
         this.customer = customer;
         this.branch = branch;
-        this.library = library;
         this.status = "requested";
+        this.materialId = materialId;
+        this.duration = duration;
+        this.price = price;
         this.count++;
         
-        this.orderId = "Rental_NO"+this.count;
+        this.orderId = "REQ-"+this.count;
     }
 
     RentalRequest() {
        
     }
-
-    public Library getLibrary() {
-        return library;
+    
+    public int getDuration() {
+        return duration;
     }
 
-    public void setLibrary(Library library) {
-        this.library = library;
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
+    public String getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(String materialId) {
+        this.materialId = materialId;
     }
     
     public Customer getCustomer() {

@@ -27,8 +27,8 @@ public class CustomerDirectory {
     }
     
     // implement code below
-    public Customer createCustomer(String customerId, String customerName) {
-        Customer c = new Customer(customerId, customerName);
+    public Customer createCustomer(String customerName) {
+        Customer c = new Customer(customerName);
         this.customerlist.add(c);
         return c;
         
@@ -42,5 +42,15 @@ public class CustomerDirectory {
             }
         }      
         return false;
+    }
+    
+    public Customer findCustomer(String customerId)
+    {
+        for(Customer c: this.customerlist) {
+            if(c.getPersonID().equals(customerId)) {
+                return c;
+            }
+        }      
+        return null;
     }
 }

@@ -9,6 +9,7 @@ import Business.Branch;
 import Business.Business;
 import Role.Role;
 import Business.UserAccount;
+import Customer.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         this.business = Business.getInstance();
         
-        populateDropdown();
+        //populateDropdown();
     }
 
     public MainJFrame(Business business, Branch branch, UserAccount useraccount) {
@@ -38,7 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.branch = branch;
         this.useraccount = useraccount;
         
-        populateDropdown();
+        //populateDropdown();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,8 +56,6 @@ public class MainJFrame extends javax.swing.JFrame {
         usernameTextField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JTextField();
-        roleLabel = new javax.swing.JLabel();
-        selectRoleCbox = new javax.swing.JComboBox<>();
         loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,18 +79,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 100, -1));
         jPanel1.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 140, -1));
 
-        roleLabel.setText("Role");
-        jPanel1.add(roleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 90, -1));
-
-        jPanel1.add(selectRoleCbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 140, -1));
-
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -108,12 +102,51 @@ public class MainJFrame extends javax.swing.JFrame {
         // since there are multiple users in the system at different levels
         // we need to traverse through all the directories to check for the username and password role match
         Boolean foundUser = false;
+        Branch currentBranch;
+        String personId;
+        String userName = usernameTextField.getText();
         
-        if(this.business.getTopLevelUserAccountDirectory()
+        if (userName.equals("admin"))
+        {
+            if (this.business.getTopLevelUserAccountDirectory()
+                .authenticateUser(usernameTextField.getText(), passwordTextField.getText()) != null) {
+                UserAccount user = this.business.getTopLevelUserAccountDirectory()
+                        .authenticateUser(usernameTextField.getText(), passwordTextField.getText());
+                foundUser = true;
+                personId = user.getPersonId();
+                    
+                user.getRole().createWorkArea(business, branch, useraccount);
+                this.setVisible(false);
+            }
+        }
+        else{
+            if (this.business.getTopLevelUserAccountDirectory()
+                .authenticateUser(usernameTextField.getText(), passwordTextField.getText()) != null) {
+                UserAccount user = this.business.getTopLevelUserAccountDirectory()
+                        .authenticateUser(usernameTextField.getText(), passwordTextField.getText());
+                foundUser = true;
+                personId = user.getPersonId();
+                
+                for(Branch branch : this.business.getBranches().getBranchesList())
+                {
+                    Employee emp = branch.getLibrary().getEmployees().findEmployee(personId);
+                    if(emp != null)
+                    {
+                        user.getRole().createWorkArea(business, branch, useraccount);
+                        this.setVisible(false);
+                    }
+                }
+            }
+            
+        }
+        
+        /*if(this.business.getTopLevelUserAccountDirectory()
                 .authenticateUser(usernameTextField.getText(), passwordTextField.getText()) != null) {
             UserAccount user = this.business.getTopLevelUserAccountDirectory()
                     .authenticateUser(usernameTextField.getText(), passwordTextField.getText());
             foundUser = true;
+            personId = user.getPersonId();
+            
             user.getRole().createWorkArea(business, branch, useraccount);
             this.setVisible(false);
         } else {
@@ -127,20 +160,13 @@ public class MainJFrame extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
             }
-        }
+        }*/
         // if user not found
         if(!foundUser) {
             JOptionPane.showMessageDialog(null, "Invalid Credentials");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    public void populateDropdown() {
-        selectRoleCbox.removeAllItems();
-        
-        for(String rolename: Role.getRoles()) {
-            selectRoleCbox.addItem(rolename);
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -182,8 +208,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
-    private javax.swing.JLabel roleLabel;
-    private javax.swing.JComboBox<String> selectRoleCbox;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables

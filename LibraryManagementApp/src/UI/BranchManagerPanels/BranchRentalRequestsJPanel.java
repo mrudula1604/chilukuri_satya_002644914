@@ -4,6 +4,11 @@
  */
 package UI.CustomerPanels;
 
+import Business.Branch;
+import Services.RentalRequest;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,8 +18,53 @@ public class BranchRentalRequestsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LibRentalRequestsJPanel
      */
-    public BranchRentalRequestsJPanel() {
+    private Branch branch;
+    DefaultTableModel renRequestsTableModel;
+    
+    public BranchRentalRequestsJPanel(Branch branch) {
         initComponents();
+        this.branch = branch;
+        this.renRequestsTableModel = (DefaultTableModel) bmRenRequestsJTable.getModel();
+        
+        displayRentalRequests();
+        displayTotalRevenue();
+    }
+    
+    private void displayTotalRevenue(){
+        ArrayList<RentalRequest> rr = this.branch.getLibrary().getRentals().getOrderlist();
+        double revenue = 0.0;
+        for(RentalRequest r: rr) 
+        {
+            if(r.getStatus().toLowerCase().equals("rejected"))
+            {
+                continue;
+            }
+            else
+            {
+                revenue = revenue + r.getPrice();
+            }
+        }
+        
+        displayRevenueLabel.setText(String.valueOf(revenue));
+    }
+    
+    private void displayRentalRequests() {
+        ArrayList<RentalRequest> rr = this.branch.getLibrary().getRentals().getOrderlist();
+        if(rr.size() >= 0) {
+            renRequestsTableModel.setRowCount(0);
+            for(RentalRequest r: rr) {
+                Object row[] = new Object[7];
+                row[0] = r.getOrderId();
+                row[1] = r.getMaterialId();
+                row[2] = r.getCustomer().getPersonID();
+                row[3] = r.getBranch().getBranchId();
+                row[4] = r.getPrice();
+                row[5] = r.getStatus();
+                row[6] = r.getDuration();
+                renRequestsTableModel.addRow(row);           
+            }
+        }
+        
     }
 
     /**
@@ -27,50 +77,65 @@ public class BranchRentalRequestsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bmRenRequestsJTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        displayRevenueLabel = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bmRenRequestsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Customer Id", "Branch Id", "Price", "Status"
+                "Order Id", "Material ID", "Customer Id", "Branch Id", "Price", "Status", "Duration"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(bmRenRequestsJTable);
+
+        jLabel1.setText("Total Revenue");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(displayRevenueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(displayRevenueLabel))
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable bmRenRequestsJTable;
+    private javax.swing.JLabel displayRevenueLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

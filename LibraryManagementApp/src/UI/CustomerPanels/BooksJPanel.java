@@ -4,6 +4,15 @@
  */
 package UI.CustomerPanels;
 
+import Business.Branch;
+import Business.BranchDirectory;
+import Customer.Customer;
+import Material.Book;
+import Services.RentalRequestDirectory;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,8 +22,48 @@ public class BooksJPanel extends javax.swing.JPanel {
     /**
      * Creates new form Books
      */
-    public BooksJPanel() {
+    
+    private BranchDirectory branches;
+    private Customer customer;
+    DefaultTableModel booksTableModel;
+    
+    public BooksJPanel(BranchDirectory branches, Customer customer) {
         initComponents();
+        this.branches = branches;
+        this.customer = customer;
+        this.booksTableModel = (DefaultTableModel) customerBooksJtable.getModel();
+        
+        //displayBooks();
+        populateBranches();
+    }
+    
+    private void populateBranches()
+    {
+        for(Branch b : this.branches.getBranchesList())
+        {
+            selectBranchCBox.addItem(b.getBranchId());
+        }
+    }
+    
+    private void displayBooks(ArrayList<Book> books) {
+        
+        if(books.size() >= 0) {
+            booksTableModel.setRowCount(0);
+            for(Book b: books) {
+                Object row[] = new Object[9];
+                row[0] = b.getSerialNumber();
+                row[1] = b.getName();
+                row[2] = b.getRegisteredDate();
+                row[3] = b.getIsAvailable();
+                row[4] = b.getAuthor().getAuthorName();
+                row[5] = b.getGenre().getName();
+                row[6] = b.getNumPages();
+                row[7] = b.getLanguage();
+                row[8] = b.getBindingType();
+                booksTableModel.addRow(row);
+            }
+        }
+        
     }
 
     /**
@@ -27,10 +76,17 @@ public class BooksJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        customerBooksJtable = new javax.swing.JTable();
+        custRequestBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        selectBranchCBox = new javax.swing.JComboBox<>();
+        loadBooksBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        priceTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        durationTextField = new javax.swing.JTextField();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customerBooksJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -49,9 +105,29 @@ public class BooksJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        customerBooksJtable.setRowSelectionAllowed(true);
+        customerBooksJtable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(customerBooksJtable);
 
-        jButton2.setText("Request");
+        custRequestBtn.setText("Request");
+        custRequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custRequestBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Select a Branch");
+
+        loadBooksBtn.setText("Load Books");
+        loadBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBooksBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Price");
+
+        jLabel3.setText("Duration");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,24 +137,93 @@ public class BooksJPanel extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectBranchCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)
+                        .addComponent(loadBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(priceTextField)
+                            .addComponent(durationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                        .addGap(92, 92, 92)
+                        .addComponent(custRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(selectBranchCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadBooksBtn))
+                .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton2)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(durationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(custRequestBtn)))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBooksBtnActionPerformed
+        String branchId = selectBranchCBox.getSelectedItem().toString();
+        Branch selectedBranch = this.branches.findBranch(branchId);
+        
+        displayBooks(selectedBranch.getLibrary().getBooks().getBooksList());
+    }//GEN-LAST:event_loadBooksBtnActionPerformed
+
+    private void custRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRequestBtnActionPerformed
+        int selectedRowIndex = customerBooksJtable.getSelectedRow();
+        String bookSerialNo = customerBooksJtable.getValueAt(selectedRowIndex, 0).toString();
+        boolean bookisAvailable = Boolean.valueOf(customerBooksJtable.getValueAt(selectedRowIndex, 3).toString());
+        if (bookisAvailable)
+        {
+            Float price = Float.valueOf(priceTextField.getText());
+            int duration = Integer.valueOf(durationTextField.getText());
+
+            String branchId = selectBranchCBox.getSelectedItem().toString();
+            Branch selectedBranch = this.branches.findBranch(branchId);
+
+            RentalRequestDirectory rd = selectedBranch.getLibrary().getRentals();
+            rd.createOrder(customer, selectedBranch, bookSerialNo, duration, price);
+            
+            selectedBranch.getLibrary().getBooks().findBook(branchId).setIsAvailable(false);
+            
+            displayBooks(selectedBranch.getLibrary().getBooks().getBooksList());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "The selected book is not currently available");
+        }     
+    }//GEN-LAST:event_custRequestBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton custRequestBtn;
+    private javax.swing.JTable customerBooksJtable;
+    private javax.swing.JTextField durationTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton loadBooksBtn;
+    private javax.swing.JTextField priceTextField;
+    private javax.swing.JComboBox<String> selectBranchCBox;
     // End of variables declaration//GEN-END:variables
 }

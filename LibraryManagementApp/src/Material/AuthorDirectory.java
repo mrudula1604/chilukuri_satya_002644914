@@ -38,6 +38,16 @@ public class AuthorDirectory {
         return false;
     }
     
+    public Author findAuthor(String authorName)
+    {
+        for(Author u: this.authorList) {
+            if(u.getAuthorName().equals(authorName)) {
+                return u;
+            }
+        }      
+        return null;
+    }
+    
     public Author createAuthor(String authorName) {
         Author a = new Author(authorName);
         this.authorList.add(a);

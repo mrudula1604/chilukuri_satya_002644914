@@ -4,6 +4,15 @@
  */
 package UI.LibrarianPanels;
 
+import Business.Branch;
+import Business.BranchDirectory;
+import Customer.Customer;
+import Material.Book;
+import Services.RentalRequest;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,8 +22,32 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LibRentalRequestsJPanel
      */
-    public CustomerRentalRequestsJPanel() {
+    private Branch branch;
+    DefaultTableModel renRequestsTableModel;
+    
+    public CustomerRentalRequestsJPanel(Branch branch) {
         initComponents();
+        this.branch = branch;
+        this.renRequestsTableModel = (DefaultTableModel) libRenRequestsJTable.getModel();
+    }
+    
+    private void displayRentalRequests() {
+        ArrayList<RentalRequest> rr = this.branch.getLibrary().getRentals().getOrderlist();
+        if(rr.size() >= 0) {
+            renRequestsTableModel.setRowCount(0);
+            for(RentalRequest r: rr) {
+                Object row[] = new Object[7];
+                row[0] = r.getOrderId();
+                row[1] = r.getMaterialId();
+                row[2] = r.getCustomer().getPersonID();
+                row[3] = r.getBranch().getBranchId();
+                row[4] = r.getPrice();
+                row[5] = r.getStatus();
+                row[6] = r.getDuration();
+                renRequestsTableModel.addRow(row);           
+            }
+        }
+        
     }
 
     /**
@@ -27,34 +60,44 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        libRenRequestsJTable = new javax.swing.JTable();
+        approveRRBtn = new javax.swing.JButton();
+        rejectRRBtn = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        libRenRequestsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Customer Id", "Branch Id", "Price", "Status"
+                "Order Id", "Material Id", "Customer Id", "Branch Id", "Price", "Status", "Duration"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(libRenRequestsJTable);
 
-        jButton1.setText("Approve");
+        approveRRBtn.setText("Approve");
+        approveRRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveRRBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Reject");
+        rejectRRBtn.setText("Reject");
+        rejectRRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rejectRRBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,9 +108,9 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(approveRRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(rejectRRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,17 +120,80 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(approveRRBtn)
+                    .addComponent(rejectRRBtn))
                 .addContainerGap(217, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void approveRRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveRRBtnActionPerformed
+        int selectedRowIndex = libRenRequestsJTable.getSelectedRow();
+        String orderId = libRenRequestsJTable.getValueAt(selectedRowIndex, 0).toString();
+        String status = libRenRequestsJTable.getValueAt(selectedRowIndex, 5).toString();
+        String branchId = libRenRequestsJTable.getValueAt(selectedRowIndex, 3).toString();
+        String customerId = libRenRequestsJTable.getValueAt(selectedRowIndex, 2).toString();
+        String materialId = libRenRequestsJTable.getValueAt(selectedRowIndex, 1).toString();
+        if (status != "returned" || status !="rejected")
+        {
+
+            RentalRequest currentOrder =  this.branch.getLibrary().getRentals().findRentalRequest(orderId);
+            currentOrder.setStatus("approved");
+            
+            Book book = this.branch.getLibrary().getBooks().findBook(materialId);
+            if (book != null)
+            {
+                book.setIsAvailable(true);
+            }
+            else
+            {
+                this.branch.getLibrary().getMagazines().findMagazine(materialId).setIsAvailable(false);
+            }
+            
+            this.branch.getLibrary().getRentals().findRentalRequest(orderId).setStatus("approved");
+            
+            displayRentalRequests();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "This material is already returned");
+        } 
+    }//GEN-LAST:event_approveRRBtnActionPerformed
+
+    private void rejectRRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectRRBtnActionPerformed
+        int selectedRowIndex = libRenRequestsJTable.getSelectedRow();
+        String orderId = libRenRequestsJTable.getValueAt(selectedRowIndex, 0).toString();
+        String status = libRenRequestsJTable.getValueAt(selectedRowIndex, 5).toString();
+        String branchId = libRenRequestsJTable.getValueAt(selectedRowIndex, 3).toString();
+        String customerId = libRenRequestsJTable.getValueAt(selectedRowIndex, 2).toString();
+        String materialId = libRenRequestsJTable.getValueAt(selectedRowIndex, 1).toString();
+        if (status.toLowerCase() == "requested")
+        {
+            RentalRequest currentOrder =  this.branch.getLibrary().getRentals().findRentalRequest(orderId);
+            currentOrder.setStatus("rejected");
+            
+            Book book = this.branch.getLibrary().getBooks().findBook(materialId);
+            if (book != null)
+            {
+                book.setIsAvailable(true);
+            }
+            else
+            {
+                this.branch.getLibrary().getMagazines().findMagazine(materialId).setIsAvailable(true);
+            }
+            
+            this.branch.getLibrary().getRentals().findRentalRequest(orderId).setStatus("approved");
+            
+            displayRentalRequests();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "This material is already returned/rejected");
+        } 
+    }//GEN-LAST:event_rejectRRBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton approveRRBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable libRenRequestsJTable;
+    private javax.swing.JButton rejectRRBtn;
     // End of variables declaration//GEN-END:variables
 }

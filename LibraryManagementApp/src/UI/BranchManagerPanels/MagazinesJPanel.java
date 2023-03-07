@@ -23,46 +23,30 @@ public class MagazinesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MagazinesJPanel
      */
-    private Business business;
-    private UserAccount user;
+    private Branch branch;
     DefaultTableModel magsTableModel;
     
-    public MagazinesJPanel() {
+    public MagazinesJPanel(Branch branch) {
         initComponents();
-        initComponents();
-        this.business = business;
-        this.user = user; 
+        this.branch = branch;
         this.magsTableModel = (DefaultTableModel) bmMagsJTable.getModel();
         
         displayMagazines();
     }
     
     private void displayMagazines() {
-        ArrayList<Magazine> mags = new ArrayList<Magazine>();
-        ArrayList<Branch> allBranches = this.business.getBranches().getBranchesList();
-        for(Branch b : allBranches){
-            Library l = b.getLibrary();
-            ArrayList<Employee> emps = l.getEmployees().getEmployees();
-            for (Employee e : emps)
-            {
-                if(this.user.getPersonId().equals(e.getPersonID()))
-                {
-                    mags = l.getMagazines().getMagazinesList();
-                }
-            }
-            
-        }
+        ArrayList<Magazine> mags = this.branch.getLibrary().getMagazines().getMagazinesList();
         
         if(mags.size() >= 0) {
             magsTableModel.setRowCount(0);
-            for(Magazine m: mags) {
-                Object row[] = new Object[9];
-                row[0] = m.getSerialNumber();
-                row[1] = m.getName();
-                row[2] = m.getRegisteredDate();
-                row[3] = m.getIsAvailable();
-                row[4] = m.getCompanyName();
-                row[5] = m.getIssueType();
+            for(Magazine b: mags) {
+                Object row[] = new Object[6];
+                row[0] = b.getSerialNumber();
+                row[1] = b.getName();
+                row[2] = b.getRegisteredDate().toString();
+                row[3] = b.getIsAvailable();
+                row[4] = b.getCompanyName();
+                row[5] = b.getIssueType();
                 magsTableModel.addRow(row);
             }
         }

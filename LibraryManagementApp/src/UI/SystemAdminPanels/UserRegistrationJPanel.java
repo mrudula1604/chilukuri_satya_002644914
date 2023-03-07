@@ -4,12 +4,16 @@
  */
 package UI.SystemAdminPanels;
 
+import Business.Branch;
 import Business.UserAccount;
 import Business.Business;
 import Business.UserAccountDirectory;
 import Customer.Customer;
 import Customer.Employee;
 import Role.CustomerRole;
+import Role.LibrarianAdminRole;
+import Role.BranchAdminRole;
+import Role.Role;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -243,13 +247,32 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         String password = empPasswordTextField.getText();
         String personId = empXBox.getSelectedItem().toString();
         
+        
         if (this.business.getTopLevelUserAccountDirectory().checkIfUserExists(username))
         {
             JOptionPane.showMessageDialog(null, "User already exists!");
         }
         else{
-            UserAccountDirectory userAccounts = this.business.getTopLevelUserAccountDirectory();                
-            userAccounts.createUserAccount(username, password, new CustomerRole(), personId);
+            Employee emp = this.business.getEmployeesList().findEmployee(personId);
+            UserAccountDirectory userAccounts = this.business.getTopLevelUserAccountDirectory();
+            String branchId = emp.getBranch().getBranchId();
+            
+            Branch currentBranch = this.business.getBranches().findBranch(branchId);
+            
+            if (emp.getDesignation().toLowerCase().equals("librarian"))
+            {
+                userAccounts.createUserAccount(username, password, new LibrarianAdminRole(), personId);
+                Employee currentLibEmployee = currentBranch.getLibrary().getEmployees().findEmployee(personId);
+                currentLibEmployee.setUserAccount(userAccounts.findById(username));
+                //currentBranch.getBranchuseraccountDirectory().createUserAccount(username, password, emp, personId)
+            }
+            else
+            {
+                userAccounts.createUserAccount(username, password, new BranchAdminRole(), personId);
+                Employee currentLibEmployee = currentBranch.getLibrary().getEmployees().findEmployee(personId);
+                currentLibEmployee.setUserAccount(userAccounts.findById(username));
+            }
+            
             
             displayUsers();
 

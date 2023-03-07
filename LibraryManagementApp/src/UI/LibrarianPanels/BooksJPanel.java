@@ -4,7 +4,18 @@
  */
 package UI.LibrarianPanels;
 
+import Business.Branch;
 import Business.Business;
+import Business.Library;
+import Customer.Customer;
+import Customer.Employee;
+import Customer.EmployeeDirectory;
+import Material.Author;
+import Material.Book;
+import Material.Genre;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,17 +24,53 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BooksJPanel extends javax.swing.JPanel {
 
-    private Business business;
-    DefaultTableModel branchesTableModel;
+    private Branch branch;
+    DefaultTableModel booksTableModel;
     
-    public BooksJPanel(Business business) {
+    public BooksJPanel(Branch branch) {
         initComponents();
-        this.business = business;
-        //this.branchesTableModel = (DefaultTableModel) branchesJTable.getModel();
+        this.branch = branch;
+        this.booksTableModel = (DefaultTableModel) libBooksJTable.getModel();
         
-        //displayBranches();
+        displayBooks();
         
-        //populateDropdowns();
+        populateDropdowns();
+    }
+    
+    private void displayBooks() {
+        ArrayList<Book> books = this.branch.getLibrary().getBooks().getBooksList();
+        
+        if(books.size() >= 0) {
+            booksTableModel.setRowCount(0);
+            for(Book b: books) {
+                Object row[] = new Object[9];
+                row[0] = b.getSerialNumber();
+                row[1] = b.getName();
+                row[2] = b.getRegisteredDate();
+                row[3] = b.getIsAvailable();
+                row[4] = b.getAuthor().getAuthorName();
+                row[5] = b.getGenre().getName();
+                row[6] = b.getNumPages();
+                row[7] = b.getLanguage();
+                row[8] = b.getBindingType();
+                booksTableModel.addRow(row);
+            }
+        }
+        
+    }
+    
+    private void populateDropdowns() {
+        ArrayList<Author> authors = this.branch.getLibrary().getAuthors().getAuthorList();
+        
+        for(Author a: authors) {
+            authorCBox.addItem(a.getAuthorName());
+        }
+        
+        ArrayList<Genre> Genres = this.branch.getLibrary().getGenres().getGenres();
+        
+        for(Genre a: Genres) {
+            genreCBox.addItem(a.getName());
+        }
     }
 
     /**
@@ -46,7 +93,7 @@ public class BooksJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         authorCBox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        genreCBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         numPagesTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -54,6 +101,8 @@ public class BooksJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         bindingTypeTextField = new javax.swing.JTextField();
         addBookBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        libBooksJTable = new javax.swing.JTable();
 
         jLabel1.setText("Serial Number");
 
@@ -98,6 +147,27 @@ public class BooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        libBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "S.No", "Name", "Reg Dt", "Is Available", "Author", "Genre", "Num of Pages", "Language", "Binding Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(libBooksJTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,9 +182,6 @@ public class BooksJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(31, 31, 31))
@@ -127,58 +194,69 @@ public class BooksJPanel extends javax.swing.JPanel {
                             .addComponent(bookSNoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                             .addComponent(bookNameTextField)
                             .addComponent(bookRegDtTextField)
-                            .addComponent(authorCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(numPagesTextField)
                             .addComponent(languageTextField)
-                            .addComponent(bindingTypeTextField)))
+                            .addComponent(bindingTypeTextField))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(numPagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genreCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(authorCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(addBookBtn)))
+                        .addGap(0, 140, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(addBookBtn)))
-                .addContainerGap(481, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bookSNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(bookRegDtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(isAvailableCBox))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(authorCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(bookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(genreCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(bookRegDtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(numPagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(languageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(isAvailableCBox))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(languageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(addBookBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(bindingTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(addBookBtn)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -195,7 +273,43 @@ public class BooksJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_languageTextFieldActionPerformed
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
-        // TODO add your handling code here:
+        String sNo = bookSNoTextField.getText();
+        String bookName = bookNameTextField.getText();
+        Date regDate = new Date();
+        boolean isAvailable = isAvailableCBox.isSelected();
+        String authorName = authorCBox.getSelectedItem().toString();
+        String genreName = genreCBox.getSelectedItem().toString();
+        int numPages = Integer.valueOf(numPagesTextField.getText());
+        String language = languageTextField.getText();
+        String bindingType = bindingTypeTextField.getText();
+        
+        
+        if (this.branch.getLibrary().getBooks().checkIfBookExists(sNo))
+        {
+            JOptionPane.showMessageDialog(null, "Book already exists!");
+        }
+        else{
+            
+            Author author = this.branch.getLibrary().getAuthors().findAuthor(authorName);
+            Genre genre = this.branch.getLibrary().getGenres().findGenre(genreName);
+        
+            Book b = new Book(sNo, bookName, regDate, isAvailable,
+            author, genre, numPages, language, bindingType);
+            
+            Library lib = branch.getLibrary();
+            lib.getBooks().addBook(b);
+            
+            displayBooks();
+
+            bookSNoTextField.setText("");
+            bookNameTextField.setText("");
+            bookRegDtTextField.setText("");
+            authorCBox.setSelectedIndex(-1);
+            genreCBox.setSelectedIndex(-1);
+            numPagesTextField.setText("");
+            languageTextField.setText("");
+            bindingTypeTextField.setText("");    
+        }
     }//GEN-LAST:event_addBookBtnActionPerformed
 
 
@@ -206,8 +320,8 @@ public class BooksJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField bookNameTextField;
     private javax.swing.JTextField bookRegDtTextField;
     private javax.swing.JTextField bookSNoTextField;
+    private javax.swing.JComboBox<String> genreCBox;
     private javax.swing.JCheckBox isAvailableCBox;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,7 +331,9 @@ public class BooksJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField languageTextField;
+    private javax.swing.JTable libBooksJTable;
     private javax.swing.JTextField numPagesTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,7 +47,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerLocation(200);
         jSplitPane1.setDividerSize(10);
 
         lmBooksBtn.setText("Books");
@@ -92,7 +92,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                     .addComponent(lmAuthAndGenreBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lmRentalReqBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(lmLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +107,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                 .addComponent(lmRentalReqBtn)
                 .addGap(86, 86, 86)
                 .addComponent(lmLogoutBtn)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -116,28 +116,22 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void lmBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmBooksBtnActionPerformed
-        jSplitPane1.setRightComponent(new BooksJPanel(this.business));
+        jSplitPane1.setRightComponent(new BooksJPanel(this.branch));
     }//GEN-LAST:event_lmBooksBtnActionPerformed
 
     private void lmMagsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmMagsBtnActionPerformed
-        // TODO add your handling code here:
+        jSplitPane1.setRightComponent(new MagazinesJPanel(this.branch));
     }//GEN-LAST:event_lmMagsBtnActionPerformed
 
     private void lmAuthAndGenreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmAuthAndGenreBtnActionPerformed

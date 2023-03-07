@@ -36,6 +36,16 @@ public class GenreDirectory {
         return false;
     }
     
+    public Genre findGenre(String genreName)
+    {
+        for(Genre u: this.genres) {
+            if(u.getName().equals(genreName)) {
+                return u;
+            }
+        }      
+        return null;
+    }
+    
     public Genre createGenre(String genreName) {
         Genre g = new Genre(genreName);
         this.genres.add(g);

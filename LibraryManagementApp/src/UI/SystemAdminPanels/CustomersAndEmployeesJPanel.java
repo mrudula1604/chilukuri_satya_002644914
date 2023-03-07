@@ -87,13 +87,9 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cidLabel = new javax.swing.JLabel();
-        cidTextField = new javax.swing.JTextField();
         cNameLabel = new javax.swing.JLabel();
         cnameTextField = new javax.swing.JTextField();
         addCustBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        empIdTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         empNameTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -108,14 +104,6 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         empJTable = new javax.swing.JTable();
 
-        cidLabel.setText("Customer Id");
-
-        cidTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cidTextFieldActionPerformed(evt);
-            }
-        });
-
         cNameLabel.setText("Customer Name");
 
         addCustBtn.setText("Add Customer");
@@ -124,8 +112,6 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
                 addCustBtnActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Employee Id");
 
         jLabel2.setText("Employee Name");
 
@@ -197,10 +183,7 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                        .addComponent(cidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(empBranchLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
@@ -208,10 +191,7 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(empIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(empNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(empDesignationCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(yrsOfExpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,11 +213,7 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cidLabel)
-                            .addComponent(cidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cNameLabel)
                             .addComponent(cnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,10 +225,7 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(empIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(empNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,63 +249,41 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCustBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustBtnActionPerformed
-        String customerId = cidTextField.getText();
         String customerName = cnameTextField.getText();
-        
-        //chec if customer already exists
-        
-        if (this.business.getCustomersList().checkIfCustomerExists(customerId))
-        {
-            JOptionPane.showMessageDialog(null, "Customer already exists!");
-        }
-        else{
-        
-            CustomerDirectory customers = this.business.getCustomersList();                
-            customers.createCustomer(customerId, customerName);
-            
-            displayCustomers();
 
-            cidTextField.setText("");
-            cnameTextField.setText("");
-        }
+        CustomerDirectory customers = this.business.getCustomersList();                
+        customers.createCustomer(customerName);
+
+        displayCustomers();
+
+        cnameTextField.setText("");
+        
     }//GEN-LAST:event_addCustBtnActionPerformed
 
-    private void cidTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cidTextFieldActionPerformed
-
     private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
-        String employeeId = empIdTextField.getText();
         String employeeName = empNameTextField.getText();
         String empDesignation = empDesignationCbox.getSelectedItem().toString();
         String empExp = yrsOfExpTextField.getText();
         String branchId = selectBranchCBox.getSelectedItem().toString();
         //int libraryBuildingNum = Integer.valueOf(selectBranchCBox.getSelectedItem().toString());
         
-        if (this.business.getEmployeesList().checkIfEmployeeExists(employeeId))
-        {
-            JOptionPane.showMessageDialog(null, "Employee already exists!");
-        }
-        else{
-        
-            EmployeeDirectory emps = this.business.getEmployeesList();
-            emps.addEmployee(employeeId, employeeName, empDesignation, Float.valueOf(empExp));
-            
-            //update the library
-            
-            Branch branch = this.business.getBranches().findBranch(branchId);
-            Library lib = branch.getLibrary();
-            
-            lib.getEmployees().addEmployee(employeeId, employeeName, empDesignation, Float.valueOf(empExp));
-            
-            displayEmployees();
+        Branch branch = this.business.getBranches().findBranch(branchId);
 
-            empIdTextField.setText("");
-            empNameTextField.setText("");
-            empDesignationCbox.setSelectedIndex(-1);
-            yrsOfExpTextField.setText("");
-            selectBranchCBox.setSelectedIndex(-1);    
-        }
+        //update the library
+        Library lib = branch.getLibrary();
+
+        Employee emp = lib.getEmployees().addEmployee(employeeName, empDesignation, Float.valueOf(empExp), branch);
+        
+        EmployeeDirectory emps = this.business.getEmployeesList();
+        emps.addEmployee(emp.getPersonID(), employeeName, empDesignation, Float.valueOf(empExp), branch);
+
+        displayEmployees();
+
+        empNameTextField.setText("");
+        empDesignationCbox.setSelectedIndex(-1);
+        yrsOfExpTextField.setText("");
+        selectBranchCBox.setSelectedIndex(-1);    
+        
     }//GEN-LAST:event_addEmpBtnActionPerformed
 
 
@@ -340,16 +291,12 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addCustBtn;
     private javax.swing.JButton addEmpBtn;
     private javax.swing.JLabel cNameLabel;
-    private javax.swing.JLabel cidLabel;
-    private javax.swing.JTextField cidTextField;
     private javax.swing.JTextField cnameTextField;
     private javax.swing.JTable custJTable;
     private javax.swing.JLabel empBranchLabel;
     private javax.swing.JComboBox<String> empDesignationCbox;
-    private javax.swing.JTextField empIdTextField;
     private javax.swing.JTable empJTable;
     private javax.swing.JTextField empNameTextField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

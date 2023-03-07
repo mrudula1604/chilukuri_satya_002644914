@@ -5,6 +5,7 @@
  */
 package Customer;
 import Services.RentalRequest;
+import Services.RentalRequestDirectory;
 import java.util.ArrayList;
 
 /**
@@ -12,26 +13,29 @@ import java.util.ArrayList;
  * @author Nidhi Raghavendra
  */
 public class Customer extends Person{
-    private ArrayList<RentalRequest> rentalRequests;
+    private static int count = 0;
+    //private RentalRequestDirectory rentalRequests;
     
     public Customer()
     {
         
     }
 
-    public Customer(String customerId, String name) {
+    public Customer(String name) {
         super();
-        this.id = customerId;
+        this.id = "CUS-" + count++;
         this.name = name;
     }
     
-    public ArrayList<RentalRequest> getRentalRequests() {
+    /*public RentalRequestDirectory getRentalRequests() {
         return rentalRequests;
     }
 
-    public void setRentalRequests(ArrayList<RentalRequest> rentalRequests) {
+    public void setRentalRequests(RentalRequestDirectory rentalRequests) {
         this.rentalRequests = rentalRequests;
-    }
+    }*/
+    
+    
     
     @Override
     public String toString(){

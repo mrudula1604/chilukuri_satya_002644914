@@ -63,6 +63,11 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         });
 
         bmMagazinesBtn.setText("Magazines");
+        bmMagazinesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmMagazinesBtnActionPerformed(evt);
+            }
+        });
 
         bmRentalReqsBtn.setText("Rental Requests");
 
@@ -103,8 +108,12 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bmButtonsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmButtonsBtnActionPerformed
-        jSplitPane1.setRightComponent(new BooksJPanel(this.business, this.useraccount));
+        jSplitPane1.setRightComponent(new BooksJPanel(this.branch));
     }//GEN-LAST:event_bmButtonsBtnActionPerformed
+
+    private void bmMagazinesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmMagazinesBtnActionPerformed
+        jSplitPane1.setRightComponent(new BooksJPanel(this.branch));
+    }//GEN-LAST:event_bmMagazinesBtnActionPerformed
 
     /**
      * @param args the command line arguments

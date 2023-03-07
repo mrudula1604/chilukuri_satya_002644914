@@ -21,13 +21,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="branchIdLabel" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                           <Component id="branchNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="buildingNumLabel" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="branchIdTextField" max="32767" attributes="0"/>
                           <Component id="branchNameTextField" pref="120" max="32767" attributes="0"/>
                           <Component id="libBuildingNumTextField" max="32767" attributes="0"/>
                       </Group>
@@ -65,18 +63,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="branchIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="branchIdTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="branchNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="branchNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buildingNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="libBuildingNumTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buildingNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="addBranchBtn" min="-2" max="-2" attributes="0"/>
@@ -91,13 +84,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="branchIdLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Branch Id"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="branchIdTextField">
-    </Component>
     <Component class="javax.swing.JLabel" name="branchNameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Branch Name"/>

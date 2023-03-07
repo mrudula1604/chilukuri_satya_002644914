@@ -4,6 +4,8 @@
  */
 package Material;
 
+import java.util.Date;
+
 /**
  *
  * @author Prasad
@@ -11,6 +13,17 @@ package Material;
 public class Magazine extends Material{
     private String companyName;
     private String issueType;
+    
+    public Magazine(String serialNum, String name, Date registeredDate, boolean isAvailable,
+            String companyName, String issueType) {
+        super();
+        this.serialNumber = serialNum;
+        this.name = name;
+        this.registeredDate = registeredDate;
+        this.isAvailable = isAvailable;
+        this.companyName = companyName;
+        this.issueType = issueType;
+    }
 
     public String getCompanyName() {
         return companyName;
