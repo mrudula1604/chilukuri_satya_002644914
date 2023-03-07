@@ -55,7 +55,7 @@ public class BranchDirectory {
         return false;
     }
 
-    public void removeApplication(String branchId) {
+    public void removeBranch(String branchId) {
         for(Branch b: this.branchesList) {
             if(b.getBranchId().equals(branchId)) {
                 this.branchesList.remove(b);

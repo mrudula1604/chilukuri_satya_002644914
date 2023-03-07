@@ -26,7 +26,11 @@ public class CustomerRole extends Role {
     public JFrame createWorkArea(Business business, Branch branch, UserAccount useraccount) {
         // return jframe
         return new CustomerJFrame(business.getBranches(),
-                business.getCustomersList().findCustomer(useraccount.getPersonId()));
+                business.getCustomersList().findCustomer(useraccount.getPersonId()),
+                business,
+                branch,
+                useraccount
+        );
         
     }
     

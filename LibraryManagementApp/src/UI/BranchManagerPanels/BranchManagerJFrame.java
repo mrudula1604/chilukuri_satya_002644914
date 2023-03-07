@@ -70,8 +70,18 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         });
 
         bmRentalReqsBtn.setText("Rental Requests");
+        bmRentalReqsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmRentalReqsBtnActionPerformed(evt);
+            }
+        });
 
         bmLogoutBtn.setText("Logout");
+        bmLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmLogoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -112,8 +122,17 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_bmButtonsBtnActionPerformed
 
     private void bmMagazinesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmMagazinesBtnActionPerformed
-        jSplitPane1.setRightComponent(new BooksJPanel(this.branch));
+        jSplitPane1.setRightComponent(new MagazinesJPanel(this.branch));
     }//GEN-LAST:event_bmMagazinesBtnActionPerformed
+
+    private void bmRentalReqsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmRentalReqsBtnActionPerformed
+        jSplitPane1.setRightComponent(new BranchRentalRequestsJPanel(this.branch));
+    }//GEN-LAST:event_bmRentalReqsBtnActionPerformed
+
+    private void bmLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmLogoutBtnActionPerformed
+        this.setVisible(false);
+        new MainJFrame(business, branch, useraccount);
+    }//GEN-LAST:event_bmLogoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -18,22 +18,23 @@ import Customer.Customer;
  */
 public class CustomerJFrame extends javax.swing.JFrame {
 
+    
     private BranchDirectory branches;
     private Customer customer;
-
-    /**
-     * Creates new form CustomerJFrame
-     */
-    public CustomerJFrame() {
-        initComponents();
-    }
+    private final Business business;
+    private final Branch branch;
+    private final UserAccount useraccount;
     
-    public CustomerJFrame(BranchDirectory branches, Customer customer) {
+    
+    public CustomerJFrame(BranchDirectory branches, Customer customer, Business business, Branch branch, UserAccount useraccount) {
        initComponents();
        this.setVisible(true);
        
        this.branches = branches;
        this.customer = customer;
+       this.business = business;
+       this.branch = branch;
+       this.useraccount = useraccount;
     }
 
     /**
@@ -64,10 +65,25 @@ public class CustomerJFrame extends javax.swing.JFrame {
         });
 
         custViewMagsBtn.setText("Magazines");
+        custViewMagsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custViewMagsBtnActionPerformed(evt);
+            }
+        });
 
         custRenRequestBtn.setText("Rental Requests");
+        custRenRequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custRenRequestBtnActionPerformed(evt);
+            }
+        });
 
         custLogoutBtn.setText("Logout");
+        custLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custLogoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,6 +123,19 @@ public class CustomerJFrame extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(new BooksJPanel(this.branches, this.customer));
     }//GEN-LAST:event_custViewBooksBtnActionPerformed
 
+    private void custLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custLogoutBtnActionPerformed
+        this.setVisible(false);
+        new MainJFrame(business, branch, useraccount);
+    }//GEN-LAST:event_custLogoutBtnActionPerformed
+
+    private void custViewMagsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custViewMagsBtnActionPerformed
+        jSplitPane1.setRightComponent(new MagazinesJPanel(this.branches, this.customer));
+    }//GEN-LAST:event_custViewMagsBtnActionPerformed
+
+    private void custRenRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRenRequestBtnActionPerformed
+        jSplitPane1.setRightComponent(new CustomerRentalRequestsJPanel(this.branches, this.customer));
+    }//GEN-LAST:event_custRenRequestBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -137,7 +166,7 @@ public class CustomerJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerJFrame().setVisible(true);
+                //new CustomerJFrame().setVisible(true);
             }
         });
     }

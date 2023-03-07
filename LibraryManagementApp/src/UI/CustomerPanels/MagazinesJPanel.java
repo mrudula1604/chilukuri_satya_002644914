@@ -26,7 +26,7 @@ public class MagazinesJPanel extends javax.swing.JPanel {
     private Customer customer;
     DefaultTableModel magsTableModel;
     
-    public MagazinesJPanel() {
+    public MagazinesJPanel(BranchDirectory branches, Customer customer) {
         initComponents();
         this.branches = branches;
         this.customer = customer;

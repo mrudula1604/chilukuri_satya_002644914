@@ -72,6 +72,11 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         });
 
         lmRentalReqBtn.setText("Rental Requests");
+        lmRentalReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lmRentalReqBtnActionPerformed(evt);
+            }
+        });
 
         lmLogoutBtn.setText("Logout");
         lmLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +125,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();
@@ -142,6 +147,10 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new MainJFrame(business, branch, useraccount);
     }//GEN-LAST:event_lmLogoutBtnActionPerformed
+
+    private void lmRentalReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmRentalReqBtnActionPerformed
+        jSplitPane1.setRightComponent(new CustomerRentalRequestsJPanel(this.branch));
+    }//GEN-LAST:event_lmRentalReqBtnActionPerformed
 
     /**
      * @param args the command line arguments

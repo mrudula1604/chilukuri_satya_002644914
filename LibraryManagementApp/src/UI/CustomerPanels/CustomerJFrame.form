@@ -86,16 +86,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Magazines"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custViewMagsBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="custRenRequestBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rental Requests"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custRenRequestBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="custLogoutBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custLogoutBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

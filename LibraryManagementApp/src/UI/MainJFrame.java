@@ -115,7 +115,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 foundUser = true;
                 personId = user.getPersonId();
                     
-                user.getRole().createWorkArea(business, branch, useraccount);
+                user.getRole().createWorkArea(business, branch, user);
                 this.setVisible(false);
             }
         }
@@ -127,14 +127,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 foundUser = true;
                 personId = user.getPersonId();
                 
+                boolean isEmployee = false;
+                
                 for(Branch branch : this.business.getBranches().getBranchesList())
                 {
                     Employee emp = branch.getLibrary().getEmployees().findEmployee(personId);
                     if(emp != null)
                     {
-                        user.getRole().createWorkArea(business, branch, useraccount);
+                        user.getRole().createWorkArea(business, branch, user);
                         this.setVisible(false);
                     }
+                }
+                
+                if (!isEmployee)
+                {
+                    user.getRole().createWorkArea(business, branch, user);
+                    this.setVisible(false);
                 }
             }
             

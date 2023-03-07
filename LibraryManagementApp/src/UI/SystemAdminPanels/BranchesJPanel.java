@@ -191,7 +191,7 @@ public class BranchesJPanel extends javax.swing.JPanel {
         int selectedRow = branchesJTable.getSelectedRow();  
         if(selectedRow >= 0) {
             String branchId =  branchesJTable.getValueAt(selectedRow, 0).toString();
-            this.business.getBranches().removeApplication(branchId); 
+            this.business.getBranches().removeBranch(branchId); 
             displayBranches();
         } else {
             

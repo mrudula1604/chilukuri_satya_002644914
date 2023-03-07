@@ -27,7 +27,7 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
     private Customer customer;
     DefaultTableModel renRequestsTableModel;
     
-    public CustomerRentalRequestsJPanel() {
+    public CustomerRentalRequestsJPanel(BranchDirectory branches, Customer customer) {
         initComponents();
         this.branches = branches;
         this.customer = customer;
