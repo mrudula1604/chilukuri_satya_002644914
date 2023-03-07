@@ -13,6 +13,11 @@ import java.util.ArrayList;
 public class BranchDirectory {
     
     private ArrayList<Branch> branchesList;
+    
+    public BranchDirectory()
+    {
+        this.branchesList = new ArrayList<Branch>();
+    }
 
     public ArrayList<Branch> getBranchesList() {
         return branchesList;
@@ -22,8 +27,10 @@ public class BranchDirectory {
         this.branchesList = branchesList;
     }
     
-    public Branch createBranch(String branchId, String branchName) {
+    public Branch createBranch(String branchId, String branchName, int libraryBuldingNumber) {
         Branch branch = new Branch(branchId, branchName);
+        Library lib = new Library(libraryBuldingNumber);
+        branch.setLibrary(lib);
         branchesList.add(branch);
         return branch;
     }
@@ -46,6 +53,15 @@ public class BranchDirectory {
             }
         }
         return false;
+    }
+
+    public void removeApplication(String branchId) {
+        for(Branch b: this.branchesList) {
+            if(b.getBranchId().equals(branchId)) {
+                this.branchesList.remove(b);
+                break;
+            }
+        }
     }
     
     

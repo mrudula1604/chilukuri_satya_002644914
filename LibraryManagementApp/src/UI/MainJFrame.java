@@ -8,12 +8,12 @@ package UI;
 import Business.Branch;
 import Business.Business;
 import Role.Role;
-import UserAccount.UserAccount;
+import Business.UserAccount;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author Chilukuri
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -50,68 +50,78 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        comboBoxRole = new javax.swing.JComboBox();
-        loginBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        usernameTextField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JTextField();
+        roleLabel = new javax.swing.JLabel();
+        selectRoleCbox = new javax.swing.JComboBox<>();
+        loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Library Management Login");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 260, -1));
+
+        usernameLabel.setText("Username");
+        jPanel1.add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 100, -1));
+
+        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameTextFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 226, 175, 39));
+        jPanel1.add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 140, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        passwordLabel.setText("Password");
+        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 100, -1));
+        jPanel1.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 140, -1));
+
+        roleLabel.setText("Role");
+        jPanel1.add(roleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 90, -1));
+
+        jPanel1.add(selectRoleCbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 140, -1));
+
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 167, 175, 39));
-
-        jPanel1.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 100, 30));
-
-        loginBtn.setText("LOGIN");
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         
         // since there are multiple users in the system at different levels
         // we need to traverse through all the directories to check for the username and password role match
         Boolean foundUser = false;
         
-        if(this.business.getTopLevelUserAccountDirectory().authenticateUser(jTextField1.getText(), jTextField1.getText()) != null) {
-            UserAccount user = this.business.getTopLevelUserAccountDirectory().authenticateUser(jTextField1.getText(), jTextField1.getText());
+        if(this.business.getTopLevelUserAccountDirectory()
+                .authenticateUser(usernameTextField.getText(), passwordTextField.getText()) != null) {
+            UserAccount user = this.business.getTopLevelUserAccountDirectory()
+                    .authenticateUser(usernameTextField.getText(), passwordTextField.getText());
             foundUser = true;
             user.getRole().createWorkArea(business, branch, useraccount);
             this.setVisible(false);
         } else {
-            for(Branch branch: this.business.getBranches()) {
-                if(branch.getBranchuseraccountDirectory().authenticateUser(jTextField1.getText(), jTextField2.getText()) != null) {
-                    UserAccount branchUser = branch.getBranchuseraccountDirectory().authenticateUser(jTextField1.getText(), jTextField2.getText());
+            for(Branch branch: this.business.getBranches().getBranchesList()) {
+                if(branch.getBranchuseraccountDirectory()
+                        .authenticateUser(usernameTextField.getText(), passwordTextField.getText()) != null) {
+                    UserAccount branchUser = branch.getBranchuseraccountDirectory()
+                            .authenticateUser(usernameTextField.getText(), passwordTextField.getText());
                     foundUser = true;
                     branchUser.getRole().createWorkArea(business, branch, useraccount);
                     this.setVisible(false);
@@ -122,13 +132,13 @@ public class MainJFrame extends javax.swing.JFrame {
         if(!foundUser) {
             JOptionPane.showMessageDialog(null, "Invalid Credentials");
         }
-    }//GEN-LAST:event_loginBtnActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     public void populateDropdown() {
-        comboBoxRole.removeAllItems();
+        selectRoleCbox.removeAllItems();
         
         for(String rolename: Role.getRoles()) {
-            comboBoxRole.addItem(rolename);
+            selectRoleCbox.addItem(rolename);
         }
     }
     /**
@@ -167,10 +177,14 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox comboBoxRole;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton loginBtn;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField passwordTextField;
+    private javax.swing.JLabel roleLabel;
+    private javax.swing.JComboBox<String> selectRoleCbox;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

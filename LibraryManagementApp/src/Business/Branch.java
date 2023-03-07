@@ -1,6 +1,6 @@
 package Business;
 
-import UserAccount.UserAccountDirectory;
+import Business.UserAccountDirectory;
 import java.util.ArrayList;
 
 /*
@@ -17,7 +17,7 @@ public class Branch {
     String BranchId;
     String name;
     UserAccountDirectory branchuseraccountDirectory;
-    Library library; 
+    Library library;
     
     public Branch(String name, Library library) {
         this.name = name;

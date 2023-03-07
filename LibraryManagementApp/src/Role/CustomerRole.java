@@ -8,7 +8,7 @@ package Role;
 import Business.Branch;
 import Business.Business;
 import UI.CustomerPanels.CustomerJFrame;
-import UserAccount.UserAccount;
+import Business.UserAccount;
 import javax.swing.JFrame;
 
 /**

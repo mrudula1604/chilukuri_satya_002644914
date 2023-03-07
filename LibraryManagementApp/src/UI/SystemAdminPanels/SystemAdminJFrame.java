@@ -6,7 +6,8 @@ package UI.SystemAdminPanels;
 
 import Business.Branch;
 import Business.Business;
-import UserAccount.UserAccount;
+import UI.MainJFrame;
+import Business.UserAccount;
 
 /**
  *
@@ -14,11 +15,20 @@ import UserAccount.UserAccount;
  */
 public class SystemAdminJFrame extends javax.swing.JFrame {
 
+    private final Business business;
+    private final Branch branch;
+    private final UserAccount useraccount;
+
     /**
      * Creates new form SystemAdminJFrame
      */
+    
     public SystemAdminJFrame(Business business, Branch branch, UserAccount useraccount) {
         initComponents();
+        this.setVisible(true);
+        this.business = business;
+        this.branch = branch;
+        this.useraccount = useraccount;
     }
 
     /**
@@ -32,34 +42,41 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        usersBtn = new javax.swing.JButton();
+        branchesBtn = new javax.swing.JButton();
+        custAndEmpBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setDividerSize(10);
 
-        jButton1.setText("Users");
-
-        jButton2.setText("Branches");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        usersBtn.setText("Users");
+        usersBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                usersBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Library");
-
-        jButton4.setText("Customers");
-
-        jButton5.setText("Logout");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        branchesBtn.setText("Branches");
+        branchesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                branchesBtnActionPerformed(evt);
+            }
+        });
+
+        custAndEmpBtn.setText("Customers and Employees");
+        custAndEmpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custAndEmpBtnActionPerformed(evt);
+            }
+        });
+
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
             }
         });
 
@@ -70,27 +87,24 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(usersBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(branchesBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(custAndEmpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(usersBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(branchesBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(custAndEmpBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addComponent(logoutBtn)
+                .addContainerGap(358, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -99,29 +113,32 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void branchesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchesBtnActionPerformed
+        jSplitPane1.setRightComponent(new BranchesJPanel(this.business));
+    }//GEN-LAST:event_branchesBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        this.setVisible(false);
+        new MainJFrame(business, branch, useraccount);
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void usersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersBtnActionPerformed
+        jSplitPane1.setRightComponent(new UserRegistrationJPanel(this.business));
+    }//GEN-LAST:event_usersBtnActionPerformed
+
+    private void custAndEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custAndEmpBtnActionPerformed
+        jSplitPane1.setRightComponent(new CustomersAndEmployeesJPanel(this.business));
+    }//GEN-LAST:event_custAndEmpBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,12 +176,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton branchesBtn;
+    private javax.swing.JButton custAndEmpBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton usersBtn;
     // End of variables declaration//GEN-END:variables
 }

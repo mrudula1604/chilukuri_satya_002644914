@@ -4,10 +4,13 @@
  */
 package Business;
 
+import Customer.EmployeeDirectory;
+import Material.Author;
 import Material.AuthorDirectory;
 import Material.BookDirectory;
 import Material.GenreDirectory;
 import Material.MagazineDirectory;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +22,23 @@ public class Library {
     private MagazineDirectory magazines;
     private AuthorDirectory authors;
     private GenreDirectory genres;
+    private EmployeeDirectory employees;
+
+    public EmployeeDirectory getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(EmployeeDirectory employees) {
+        this.employees = employees;
+    }
+    
+    public Library(int buildingNumber){
+        this.buildingNumber = buildingNumber;
+        this.authors = new AuthorDirectory();
+        this.books = new BookDirectory();
+        this.employees = new EmployeeDirectory();
+        this.magazines = new MagazineDirectory();
+    }
 
     public int getBuildingNumber() {
         return buildingNumber;
@@ -59,5 +79,7 @@ public class Library {
     public void setGenres(GenreDirectory genres) {
         this.genres = genres;
     }
+    
+    
     
 }

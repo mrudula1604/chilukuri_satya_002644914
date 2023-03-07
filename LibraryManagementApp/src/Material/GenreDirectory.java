@@ -12,6 +12,11 @@ import java.util.ArrayList;
  */
 public class GenreDirectory {
     private ArrayList<Genre> genres;
+    
+    public GenreDirectory()
+    {
+        this.genres = new ArrayList<Genre>();
+    }
 
     public ArrayList<Genre> getGenres() {
         return genres;
@@ -21,5 +26,19 @@ public class GenreDirectory {
         this.genres = genres;
     }
     
-    //add genre
+    public boolean checkIfGenreExists(String genreName)
+    {
+        for(Genre g: this.genres) {
+            if(g.getName().equals(genreName)) {
+                return true;
+            }
+        }      
+        return false;
+    }
+    
+    public Genre createGenre(String genreName) {
+        Genre g = new Genre(genreName);
+        this.genres.add(g);
+        return g;
+    }
 }

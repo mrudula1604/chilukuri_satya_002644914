@@ -10,6 +10,11 @@ package Material;
  */
 public class Genre {
     private String name;
+    
+    public Genre(String genreName)
+    {
+        this.name = genreName;
+    }
 
     public String getName() {
         return name;

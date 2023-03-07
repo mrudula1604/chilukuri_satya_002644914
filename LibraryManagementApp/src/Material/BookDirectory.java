@@ -12,6 +12,11 @@ import java.util.ArrayList;
  */
 public class BookDirectory {
     private ArrayList<Book> booksList;
+    
+    public BookDirectory()
+    {
+        this.booksList = new ArrayList<Book>();
+    }
 
     public ArrayList<Book> getBooksList() {
         return booksList;

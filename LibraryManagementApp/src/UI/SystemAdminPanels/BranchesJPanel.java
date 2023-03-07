@@ -4,6 +4,15 @@
  */
 package UI.SystemAdminPanels;
 
+import Business.Branch;
+import Business.BranchDirectory;
+import Business.Business;
+import Business.Library;
+import Business.LibraryDirectory;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
@@ -13,8 +22,32 @@ public class BranchesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BranchesJPanel
      */
-    public BranchesJPanel() {
+    
+    private Business business;
+    DefaultTableModel branchesTableModel;
+    
+    public BranchesJPanel(Business business) {
         initComponents();
+        this.business = business;
+        this.branchesTableModel = (DefaultTableModel) branchesJTable.getModel();
+        
+        displayBranches();
+        
+        //populateDropdowns();
+    }
+    
+    private void displayBranches() {
+        ArrayList<Branch> branches = this.business.getBranches().getBranchesList();
+        if(branches.size() >= 0) {
+            branchesTableModel.setRowCount(0);
+            for(Branch b: branches) {
+                Object row[] = new Object[3];
+                row[0] = b.getBranchId();
+                row[1] = b.getName();
+                row[2] = b.getLibrary().getBuildingNumber();
+                branchesTableModel.addRow(row);
+            }
+        }
     }
 
     /**
@@ -30,34 +63,29 @@ public class BranchesJPanel extends javax.swing.JPanel {
         branchIdTextField = new javax.swing.JTextField();
         branchNameLabel = new javax.swing.JLabel();
         branchNameTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        addBranchBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        libraryBranchLabel = new javax.swing.JLabel();
-        selectBranchCbox = new javax.swing.JComboBox<>();
         buildingNumLabel = new javax.swing.JLabel();
-        buildingNumTextField = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         branchesJTable = new javax.swing.JTable();
         deleteBranchButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        libBuildingNumTextField = new javax.swing.JTextField();
 
         branchIdLabel.setText("Branch Id");
 
         branchNameLabel.setText("Branch Name");
 
-        jButton1.setText("Add Branch");
+        addBranchBtn.setText("Add Branch");
+        addBranchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBranchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Add a new Branch");
 
-        jLabel2.setText("Assign a Library");
-
-        libraryBranchLabel.setText("Branch");
-
         buildingNumLabel.setText("Building #");
-
-        jButton2.setText("Save");
 
         branchesJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,6 +109,11 @@ public class BranchesJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(branchesJTable);
 
         deleteBranchButton.setText("Delete Branch");
+        deleteBranchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBranchButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Available Branches");
 
@@ -93,32 +126,18 @@ public class BranchesJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(branchIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(branchNameLabel))
-                                .addGap(59, 59, 59)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(branchIdTextField)
-                                    .addComponent(branchNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(buildingNumLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                                    .addComponent(libraryBranchLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(selectBranchCbox, 0, 111, Short.MAX_VALUE)
-                                    .addComponent(buildingNumTextField)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jButton2)))
-                .addGap(18, 18, 18)
+                            .addComponent(branchIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(branchNameLabel)
+                            .addComponent(buildingNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(branchIdTextField)
+                            .addComponent(branchNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(libBuildingNumTextField))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addBranchBtn)
+                        .addGap(110, 110, 110)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deleteBranchButton)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -138,7 +157,7 @@ public class BranchesJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(branchIdLabel)
@@ -147,44 +166,72 @@ public class BranchesJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(branchNameLabel)
                             .addComponent(branchNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton1)
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel2)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(libraryBranchLabel)
-                            .addComponent(selectBranchCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buildingNumLabel)
-                            .addComponent(buildingNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(libBuildingNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(addBranchBtn))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteBranchButton)
-                    .addComponent(jButton2))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addComponent(deleteBranchButton)
+                .addContainerGap(195, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBranchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBranchBtnActionPerformed
+        String branchId = branchIdTextField.getText();
+        String branchName = branchNameTextField.getText();
+        int libraryBuilding = Integer.valueOf(libBuildingNumTextField.getText());
+        
+        if (this.business.getBranches().checkIfBranchExists(branchId))
+        {
+            JOptionPane.showMessageDialog(null, "Branch already exists. Use a different BranchId #");
+        }
+        else{
+            BranchDirectory branches = this.business.getBranches();                
+            branches.createBranch(branchId, branchName, libraryBuilding);
+            displayBranches();
+
+            branchIdTextField.setText("");
+            branchNameTextField.setText("");
+            libBuildingNumTextField.setText("");
+        }
+    }//GEN-LAST:event_addBranchBtnActionPerformed
+
+    private void deleteBranchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBranchButtonActionPerformed
+        int selectedRow = branchesJTable.getSelectedRow();  
+        if(selectedRow >= 0) {
+            String branchId =  branchesJTable.getValueAt(selectedRow, 0).toString();
+            this.business.getBranches().removeApplication(branchId); 
+            displayBranches();
+        } else {
+            
+        }
+    }//GEN-LAST:event_deleteBranchButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBranchBtn;
     private javax.swing.JLabel branchIdLabel;
     private javax.swing.JTextField branchIdTextField;
     private javax.swing.JLabel branchNameLabel;
     private javax.swing.JTextField branchNameTextField;
     private javax.swing.JTable branchesJTable;
     private javax.swing.JLabel buildingNumLabel;
-    private javax.swing.JTextField buildingNumTextField;
     private javax.swing.JButton deleteBranchButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel libraryBranchLabel;
-    private javax.swing.JComboBox<String> selectBranchCbox;
+    private javax.swing.JTextField libBuildingNumTextField;
     // End of variables declaration//GEN-END:variables
+
+    /*private void populateDropdowns() {
+        ArrayList<Library> libraries = this.business.getLibraries().getLibraryList();
+        
+        for(Library l: libraries) {
+            libCBox.addItem(Integer.toString(l.getBuildingNumber()));
+        }
+    }*/
+    
 }

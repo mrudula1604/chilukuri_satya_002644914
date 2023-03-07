@@ -4,52 +4,38 @@
  * and open the template in the editor.
  */
 package Customer;
-import Business.Person;
+import Services.RentalRequest;
+import java.util.ArrayList;
 
 /**
  *
  * @author Nidhi Raghavendra
  */
 public class Customer extends Person{
-    private String customerId;
-    private String designation;
-    private float yearsOfExperience;
+    private ArrayList<RentalRequest> rentalRequests;
+    
+    public Customer()
+    {
+        
+    }
 
-    public Customer(String empId, String name, String designation, float experience) {
+    public Customer(String customerId, String name) {
         super();
-        this.employeeId = empId;
+        this.id = customerId;
         this.name = name;
-        this.designation = designation;
-        this.yearsOfExperience = experience;
     }
     
-    public String getEmployeeId() {
-        return employeeId;
+    public ArrayList<RentalRequest> getRentalRequests() {
+        return rentalRequests;
     }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
-    public float getYearsOfExperience() {
-        return yearsOfExperience;
-    }
-
-    public void setYearsOfExperience(float yearsOfExperience) {
-        this.yearsOfExperience = yearsOfExperience;
+    public void setRentalRequests(ArrayList<RentalRequest> rentalRequests) {
+        this.rentalRequests = rentalRequests;
     }
     
     @Override
     public String toString(){
-        return this.employeeId;
+        return this.id;
     }
     
 }

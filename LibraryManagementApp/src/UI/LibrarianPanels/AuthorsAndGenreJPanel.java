@@ -4,18 +4,62 @@
  */
 package UI.LibrarianPanels;
 
+import Business.Branch;
+import Business.Business;
+import Business.Library;
+import Customer.EmployeeDirectory;
+import Material.Author;
+import Material.AuthorDirectory;
+import Material.Genre;
+import Material.GenreDirectory;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prasad
  */
 public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AuthorsJPanel
-     */
-    public AuthorsAndGenreJPanel() {
+    private Branch branch;
+    DefaultTableModel authorsTableModel;
+    DefaultTableModel genresTableModel;
+    
+    public AuthorsAndGenreJPanel(Branch branch) {
         initComponents();
+        this.branch = branch;
+        this.authorsTableModel = (DefaultTableModel) authorsJTable.getModel();
+        this.genresTableModel = (DefaultTableModel) genreJTable.getModel();
+        
+        displayAuthors();
+        displayGenres();
+        
     }
+    
+    private void displayAuthors() {
+        ArrayList<Author> authors = this.branch.getLibrary().getAuthors().getAuthorList();
+        if(authors.size() >= 0) {
+            authorsTableModel.setRowCount(0);
+            for(Author a: authors) {
+                Object row[] = new Object[1];
+                row[0] = a.getAuthorName();
+                authorsTableModel.addRow(row);
+            }
+        }
+    }
+    private void displayGenres() {
+        ArrayList<Genre> genres = this.branch.getLibrary().getGenres().getGenres();
+        if(genres.size() >= 0) {
+            genresTableModel.setRowCount(0);
+            for(Genre g: genres) {
+                Object row[] = new Object[1];
+                row[0] = g.getName();
+                genresTableModel.addRow(row);
+            }
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,23 +71,26 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        authorNameTextField = new javax.swing.JTextField();
+        addAuthorBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        authorsJTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        genreNameTextField = new javax.swing.JTextField();
+        addGenreBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        genreJTable = new javax.swing.JTable();
 
         jLabel1.setText("Author Name");
 
-        jTextField1.setText("jTextField1");
+        addAuthorBtn.setText("Add Author");
+        addAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAuthorBtnActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Add Author");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        authorsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -62,15 +109,18 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(authorsJTable);
 
         jLabel2.setText("Genre Name");
 
-        jTextField2.setText("jTextField2");
+        addGenreBtn.setText("Add Genre");
+        addGenreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGenreBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Add Genre");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        genreJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -89,7 +139,7 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(genreJTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,21 +149,21 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(jButton1))
+                        .addComponent(addAuthorBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(authorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(genreNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addGenreBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
@@ -128,18 +178,18 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(authorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(addAuthorBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(genreNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
-                        .addComponent(jButton2)
+                        .addComponent(addGenreBtn)
                         .addGap(306, 306, 306))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -148,17 +198,53 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addAuthorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAuthorBtnActionPerformed
+        String authorName = authorNameTextField.getText();
+ 
+        if (this.branch.getLibrary().getAuthors().checkIfAuthorExists(authorName))
+        {
+            JOptionPane.showMessageDialog(null, "Author already exists!");
+        }
+        else{
+            
+            AuthorDirectory ad = this.branch.getLibrary().getAuthors();
+            ad.createAuthor(authorName);
+            
+            displayAuthors();
+
+            authorNameTextField.setText("");    
+        }
+    }//GEN-LAST:event_addAuthorBtnActionPerformed
+
+    private void addGenreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGenreBtnActionPerformed
+        String genreName = genreNameTextField.getText();
+ 
+        if (this.branch.getLibrary().getGenres().checkIfGenreExists(genreName))
+        {
+            JOptionPane.showMessageDialog(null, "Genre already exists!");
+        }
+        else{
+            
+            GenreDirectory gd = this.branch.getLibrary().getGenres();
+            gd.createGenre(genreName);
+            
+            displayGenres();
+
+            genreNameTextField.setText("");    
+        }
+    }//GEN-LAST:event_addGenreBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addAuthorBtn;
+    private javax.swing.JButton addGenreBtn;
+    private javax.swing.JTextField authorNameTextField;
+    private javax.swing.JTable authorsJTable;
+    private javax.swing.JTable genreJTable;
+    private javax.swing.JTextField genreNameTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

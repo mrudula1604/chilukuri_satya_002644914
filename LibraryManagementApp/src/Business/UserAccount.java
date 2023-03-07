@@ -5,35 +5,44 @@
  */
 package Business;
 
+import Role.Role;
+
 /**
  *
  * @author Chilukuri
  */
 public class UserAccount {
 
-    private static int count = 0;
-    private String accountId;
+    //private static int count = 0;
+    //private String accountId;
     private String username;
     private String password;
-
-    // assume roles are defined as manager, delivery agent, customer
-    private String role;
+    private Role role;
+    private String personId;
 
     public UserAccount() {
-        this.accountId = "ACC" + count++;
+        //this.accountId = "ACC" + count++;
+        this.username = username;
+        this.password = password;
+        this.role = role;        
+    }
+
+    public UserAccount(String username, String password, Role role, String personId) {
+        //this.accountId = role + count++;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.personId = personId;
+    }
+    
+    public UserAccount(String username, String password, Role role) {
+        //this.accountId = role + count++;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public UserAccount(String username, String password, String role) {
-        this.accountId = role + count++;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    public static int getCount() {
+    /*public static int getCount() {
         return count;
     }
 
@@ -47,6 +56,15 @@ public class UserAccount {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+    */
+    
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getUsername() {
@@ -65,11 +83,11 @@ public class UserAccount {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }    

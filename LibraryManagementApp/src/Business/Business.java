@@ -5,8 +5,9 @@
  */
 package Business;
 
+import Customer.CustomerDirectory;
+import Customer.EmployeeDirectory;
 import Role.SystemAdminRole;
-import UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 
 /**
@@ -14,22 +15,44 @@ import java.util.ArrayList;
  * @author Chilukuri
  */
 public class Business {
-    ArrayList<Branch> branches;
+    BranchDirectory branches;
+    //LibraryDirectory libraries;
     UserAccountDirectory topLevelUserAccountDirectory;
+    CustomerDirectory customersList;
+    EmployeeDirectory employeesList;
     
     public Business() {
-        this.branches = new ArrayList<Branch>();
+        this.branches = new BranchDirectory();
+        //this.libraries = new LibraryDirectory();
+        this.customersList = new CustomerDirectory();
+        this.employeesList = new EmployeeDirectory();
         this.topLevelUserAccountDirectory = new UserAccountDirectory();
         
         // CREATING ADMIN
         this.topLevelUserAccountDirectory.createUserAccount("admin", "admin", new SystemAdminRole());
     }
 
-    public ArrayList<Branch> getBranches() {
+    public EmployeeDirectory getEmployeesList() {
+        return employeesList;
+    }
+
+    public void setEmployeesList(EmployeeDirectory employeesList) {
+        this.employeesList = employeesList;
+    }
+
+    /*public LibraryDirectory getLibraries() {
+        return libraries;
+    }
+
+    public void setLibraries(LibraryDirectory libraries) {
+        this.libraries = libraries;
+    }*/
+
+    public BranchDirectory getBranches() {
         return branches;
     }
 
-    public void setBranches(ArrayList<Branch> branches) {
+    public void setBranches(BranchDirectory branches) {
         this.branches = branches;
     }
 
@@ -41,10 +64,12 @@ public class Business {
         this.topLevelUserAccountDirectory = topLevelUserAccountDirectory;
     }
     
-    public Branch createBranch(String name, Library library) {
-        Branch branch = new Branch(name, library);
-        this.branches.add(branch);
-        return branch;
+    public CustomerDirectory getCustomersList() {
+        return customersList;
+    }
+
+    public void setCustomersList(CustomerDirectory customersList) {
+        this.customersList = customersList;
     }
     
     public static Business getInstance() {

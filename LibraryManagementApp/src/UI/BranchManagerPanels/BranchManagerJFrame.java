@@ -8,7 +8,8 @@ package UI.BranchManagerPanels;
 import Business.Branch;
 import Business.Business;
 import UI.MainJFrame;
-import UserAccount.UserAccount;
+import Business.UserAccount;
+import UI.SystemAdminPanels.BranchesJPanel;
 
 /**
  *
@@ -44,23 +45,28 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bmButtonsBtn = new javax.swing.JButton();
+        bmMagazinesBtn = new javax.swing.JButton();
+        bmRentalReqsBtn = new javax.swing.JButton();
+        bmLogoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(10);
 
-        jButton1.setText("Books");
+        bmButtonsBtn.setText("Books");
+        bmButtonsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmButtonsBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Magazines");
+        bmMagazinesBtn.setText("Magazines");
 
-        jButton3.setText("Rental Requests");
+        bmRentalReqsBtn.setText("Rental Requests");
 
-        jButton4.setText("Logout");
+        bmLogoutBtn.setText("Logout");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,23 +75,23 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bmRentalReqsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bmMagazinesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bmButtonsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bmLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jButton1)
+                .addComponent(bmButtonsBtn)
                 .addGap(12, 12, 12)
-                .addComponent(jButton2)
+                .addComponent(bmMagazinesBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(bmRentalReqsBtn)
                 .addGap(27, 27, 27)
-                .addComponent(jButton4)
+                .addComponent(bmLogoutBtn)
                 .addContainerGap(375, Short.MAX_VALUE))
         );
 
@@ -95,6 +101,10 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bmButtonsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmButtonsBtnActionPerformed
+        jSplitPane1.setRightComponent(new BooksJPanel(this.business, this.useraccount));
+    }//GEN-LAST:event_bmButtonsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,10 +142,10 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton bmButtonsBtn;
+    private javax.swing.JButton bmLogoutBtn;
+    private javax.swing.JButton bmMagazinesBtn;
+    private javax.swing.JButton bmRentalReqsBtn;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables

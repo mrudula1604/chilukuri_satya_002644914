@@ -27,7 +27,20 @@ public class CustomerDirectory {
     }
     
     // implement code below
-    public Customer createCustomer() {
-        return null;
+    public Customer createCustomer(String customerId, String customerName) {
+        Customer c = new Customer(customerId, customerName);
+        this.customerlist.add(c);
+        return c;
+        
+    }
+    
+    public boolean checkIfCustomerExists(String customerId)
+    {
+        for(Customer c: this.customerlist) {
+            if(c.getPersonID().equals(customerId)) {
+                return true;
+            }
+        }      
+        return false;
     }
 }

@@ -7,9 +7,8 @@ package Role;
 
 import Business.Branch;
 import Business.Business;
-import UI.MainJFrame;
 import UI.SystemAdminPanels.SystemAdminJFrame;
-import UserAccount.UserAccount;
+import Business.UserAccount;
 import javax.swing.JFrame;
 
 /**

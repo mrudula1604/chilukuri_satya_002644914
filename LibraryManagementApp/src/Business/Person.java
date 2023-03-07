@@ -12,6 +12,23 @@ package Business;
 public class Person {
     String id;
     String name;
+    UserAccount useraccount;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public UserAccount getUseraccount() {
+        return useraccount;
+    }
+
+    public void setUseraccount(UserAccount useraccount) {
+        this.useraccount = useraccount;
+    }
     
     public Person() {
         

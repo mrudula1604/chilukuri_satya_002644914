@@ -8,7 +8,7 @@ package UI.CustomerPanels;
 import Business.Branch;
 import Business.Business;
 import UI.MainJFrame;
-import UserAccount.UserAccount;
+import Business.UserAccount;
 
 /**
  *

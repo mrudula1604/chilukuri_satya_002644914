@@ -12,6 +12,11 @@ import java.util.ArrayList;
  */
 public class MagazineDirectory {
     private ArrayList<Magazine> magazinesList;
+    
+    public MagazineDirectory()
+    {
+        this.magazinesList = new ArrayList<Magazine>();
+    }
 
     public ArrayList<Magazine> getMagazinesList() {
         return magazinesList;

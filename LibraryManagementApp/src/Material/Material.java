@@ -40,7 +40,7 @@ public class Material {
         this.registeredDate = registeredDate;
     }
 
-    public boolean isIsAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 

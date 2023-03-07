@@ -4,17 +4,28 @@
  */
 package UI.LibrarianPanels;
 
+import Business.Branch;
+import Business.Business;
+import Business.UserAccount;
+import UI.MainJFrame;
+import UI.SystemAdminPanels.UserRegistrationJPanel;
+
 /**
  *
  * @author Prasad
  */
 public class LibrarianJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LibrarianJFrame
-     */
-    public LibrarianJFrame() {
+    private final Business business;
+    private final Branch branch;
+    private final UserAccount useraccount;
+
+    public LibrarianJFrame(Business business, Branch branch, UserAccount useraccount) {
         initComponents();
+        this.setVisible(true);
+        this.business = business;
+        this.branch = branch;
+        this.useraccount = useraccount;
     }
 
     /**
@@ -28,44 +39,44 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        lmBooksBtn = new javax.swing.JButton();
+        lmMagsBtn = new javax.swing.JButton();
+        lmAuthAndGenreBtn = new javax.swing.JButton();
+        lmRentalReqBtn = new javax.swing.JButton();
+        lmLogoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(10);
 
-        jButton1.setText("Books");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lmBooksBtn.setText("Books");
+        lmBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                lmBooksBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Magazines");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        lmMagsBtn.setText("Magazines");
+        lmMagsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                lmMagsBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Authors and Genre");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        lmAuthAndGenreBtn.setText("Authors and Genre");
+        lmAuthAndGenreBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                lmAuthAndGenreBtnActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Rental Requests");
+        lmRentalReqBtn.setText("Rental Requests");
 
-        jButton6.setText("Logout");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        lmLogoutBtn.setText("Logout");
+        lmLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                lmLogoutBtnActionPerformed(evt);
             }
         });
 
@@ -76,26 +87,26 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lmBooksBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lmMagsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lmAuthAndGenreBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lmRentalReqBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(lmLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(lmBooksBtn)
                 .addGap(28, 28, 28)
-                .addComponent(jButton2)
+                .addComponent(lmMagsBtn)
                 .addGap(33, 33, 33)
-                .addComponent(jButton3)
+                .addComponent(lmAuthAndGenreBtn)
                 .addGap(29, 29, 29)
-                .addComponent(jButton5)
+                .addComponent(lmRentalReqBtn)
                 .addGap(86, 86, 86)
-                .addComponent(jButton6)
+                .addComponent(lmLogoutBtn)
                 .addContainerGap(186, Short.MAX_VALUE))
         );
 
@@ -121,21 +132,22 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void lmBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmBooksBtnActionPerformed
+        jSplitPane1.setRightComponent(new BooksJPanel(this.business));
+    }//GEN-LAST:event_lmBooksBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void lmMagsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmMagsBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_lmMagsBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void lmAuthAndGenreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmAuthAndGenreBtnActionPerformed
+        jSplitPane1.setRightComponent(new AuthorsAndGenreJPanel(this.branch));
+    }//GEN-LAST:event_lmAuthAndGenreBtnActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void lmLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lmLogoutBtnActionPerformed
+        this.setVisible(false);
+        new MainJFrame(business, branch, useraccount);
+    }//GEN-LAST:event_lmLogoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,18 +179,18 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LibrarianJFrame().setVisible(true);
+                //new LibrarianJFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton lmAuthAndGenreBtn;
+    private javax.swing.JButton lmBooksBtn;
+    private javax.swing.JButton lmLogoutBtn;
+    private javax.swing.JButton lmMagsBtn;
+    private javax.swing.JButton lmRentalReqBtn;
     // End of variables declaration//GEN-END:variables
 }
