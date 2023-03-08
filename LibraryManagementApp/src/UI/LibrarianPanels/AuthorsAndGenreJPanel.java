@@ -81,6 +81,8 @@ public class AuthorsAndGenreJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         genreJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setText("Author Name");
 
         addAuthorBtn.setText("Add Author");

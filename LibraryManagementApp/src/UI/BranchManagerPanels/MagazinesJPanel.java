@@ -65,6 +65,8 @@ public class MagazinesJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         bmMagsJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 51, 204));
+
         bmMagsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

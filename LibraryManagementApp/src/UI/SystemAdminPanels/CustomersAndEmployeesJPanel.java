@@ -104,6 +104,8 @@ public class CustomersAndEmployeesJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         empJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(153, 255, 153));
+
         cNameLabel.setText("Customer Name");
 
         addCustBtn.setText("Add Customer");

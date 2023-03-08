@@ -104,6 +104,8 @@ public class BooksJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         libBooksJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 204, 255));
+
         jLabel1.setText("Serial Number");
 
         jLabel2.setText("Name");

@@ -66,6 +66,8 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
         approveRRBtn = new javax.swing.JButton();
         rejectRRBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
         libRenRequestsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},

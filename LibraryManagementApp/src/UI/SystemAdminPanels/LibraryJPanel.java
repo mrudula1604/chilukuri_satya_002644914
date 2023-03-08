@@ -48,6 +48,8 @@ public class LibraryJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         librariesJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 102, 102));
+
         jLabel1.setText("Libraries");
 
         buildingNumLabel.setText("Building #");

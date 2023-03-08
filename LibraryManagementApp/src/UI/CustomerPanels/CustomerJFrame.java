@@ -55,7 +55,10 @@ public class CustomerJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setBackground(new java.awt.Color(255, 255, 51));
         jSplitPane1.setDividerLocation(200);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 153));
 
         custViewBooksBtn.setText("Books");
         custViewBooksBtn.addActionListener(new java.awt.event.ActionListener() {

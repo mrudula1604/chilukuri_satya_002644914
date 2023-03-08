@@ -52,6 +52,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setDividerSize(10);
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
         usersBtn.setText("Users");
         usersBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

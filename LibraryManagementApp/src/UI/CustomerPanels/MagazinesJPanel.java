@@ -81,6 +81,8 @@ public class MagazinesJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         magDurationTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 153, 255));
+
         custMagsJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

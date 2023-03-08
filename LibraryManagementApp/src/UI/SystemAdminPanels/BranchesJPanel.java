@@ -70,6 +70,8 @@ public class BranchesJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         libBuildingNumTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(51, 153, 255));
+
         branchNameLabel.setText("Branch Name");
 
         addBranchBtn.setText("Add Branch");

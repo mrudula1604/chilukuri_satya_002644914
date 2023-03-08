@@ -47,8 +47,11 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setBackground(new java.awt.Color(102, 153, 255));
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setDividerSize(10);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         lmBooksBtn.setText("Books");
         lmBooksBtn.addActionListener(new java.awt.event.ActionListener() {

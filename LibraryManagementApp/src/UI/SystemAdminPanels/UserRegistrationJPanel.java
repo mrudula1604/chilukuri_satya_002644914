@@ -94,6 +94,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         usersJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(51, 255, 204));
+
         jLabel1.setText("Username");
 
         jLabel2.setText("Password");

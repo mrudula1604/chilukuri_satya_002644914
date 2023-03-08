@@ -86,6 +86,8 @@ public class BooksJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         durationTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(153, 204, 0));
+
         customerBooksJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -105,7 +107,6 @@ public class BooksJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        customerBooksJtable.setRowSelectionAllowed(true);
         customerBooksJtable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(customerBooksJtable);
 

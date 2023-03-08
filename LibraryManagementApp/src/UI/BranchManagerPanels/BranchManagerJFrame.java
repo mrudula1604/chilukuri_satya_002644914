@@ -52,8 +52,11 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setBackground(new java.awt.Color(204, 204, 255));
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(10);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
         bmButtonsBtn.setText("Books");
         bmButtonsBtn.addActionListener(new java.awt.event.ActionListener() {

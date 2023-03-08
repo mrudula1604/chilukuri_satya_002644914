@@ -47,6 +47,8 @@ public class BooksJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         bmBooksJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(204, 255, 204));
+
         bmBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},

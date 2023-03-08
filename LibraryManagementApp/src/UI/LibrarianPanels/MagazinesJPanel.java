@@ -74,6 +74,8 @@ public class MagazinesJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         libMagazinesJTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 0, 153));
+
         jLabel1.setText("Serial Number");
 
         jLabel2.setText("Name");

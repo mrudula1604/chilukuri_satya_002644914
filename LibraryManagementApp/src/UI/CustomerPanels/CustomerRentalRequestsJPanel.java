@@ -81,6 +81,8 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
         rrSelectBranchCBox = new javax.swing.JComboBox<>();
         loadRRBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 153, 153));
+
         custRentalsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
