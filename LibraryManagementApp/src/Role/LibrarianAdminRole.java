@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public class LibrarianAdminRole extends Role {
 

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class MagazinesJPanel extends javax.swing.JPanel {
 
@@ -109,7 +109,7 @@ public class MagazinesJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -183,7 +183,7 @@ public class MagazinesJPanel extends javax.swing.JPanel {
         String magName = libMagNameTextField.getText();
         Date currentDate = new Date();
         String regDate = currentDate.toString();
-        String isAvailable = libMagIsAvailable.getText().toString();
+        boolean isAvailable = libMagIsAvailable.isSelected();
         String companyName = libMagCmpNameTextField.getText();
         String issueType = libMagIssueTypeTextField.getText();
         
@@ -194,7 +194,7 @@ public class MagazinesJPanel extends javax.swing.JPanel {
         else{
         
             Magazine m = new Magazine(sNo, magName, currentDate,
-                    Boolean.valueOf(isAvailable),companyName, issueType);
+                    isAvailable,companyName, issueType);
             
             Library lib = branch.getLibrary();
             lib.getMagazines().addMagazine(m);

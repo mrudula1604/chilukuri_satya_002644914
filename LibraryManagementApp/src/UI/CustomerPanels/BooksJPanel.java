@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class BooksJPanel extends javax.swing.JPanel {
 
@@ -204,9 +204,11 @@ public class BooksJPanel extends javax.swing.JPanel {
             RentalRequestDirectory rd = selectedBranch.getLibrary().getRentals();
             rd.createOrder(customer, selectedBranch, bookSerialNo, duration, price);
             
-            selectedBranch.getLibrary().getBooks().findBook(branchId).setIsAvailable(false);
+            selectedBranch.getLibrary().getBooks().findBook(bookSerialNo).setIsAvailable(false);
             
             displayBooks(selectedBranch.getLibrary().getBooks().getBooksList());
+            
+            JOptionPane.showMessageDialog(null, "Request submitted");
         }
         else{
             JOptionPane.showMessageDialog(null, "The selected book is not currently available");

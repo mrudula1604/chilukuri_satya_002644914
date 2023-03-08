@@ -48,7 +48,7 @@
                 <Column editable="true" title="S.No" type="java.lang.String"/>
                 <Column editable="true" title="Name" type="java.lang.String"/>
                 <Column editable="true" title="Registred Date" type="java.lang.String"/>
-                <Column editable="true" title="Is Available" type="java.lang.Integer"/>
+                <Column editable="true" title="Is Available" type="java.lang.Boolean"/>
                 <Column editable="true" title="Company" type="java.lang.String"/>
                 <Column editable="true" title="Issue Type" type="java.lang.String"/>
               </Table>

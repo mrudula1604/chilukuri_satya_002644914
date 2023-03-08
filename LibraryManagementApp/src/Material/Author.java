@@ -6,7 +6,7 @@ package Material;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class Author {
     private String authorName;

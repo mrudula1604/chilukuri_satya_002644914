@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UI.CustomerPanels;
+
+package UI.BranchManagerPanels;
 
 import Business.Branch;
 import Services.RentalRequest;
@@ -11,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class BranchRentalRequestsJPanel extends javax.swing.JPanel {
 

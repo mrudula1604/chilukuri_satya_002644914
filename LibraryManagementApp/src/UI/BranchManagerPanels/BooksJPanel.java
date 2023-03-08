@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class BooksJPanel extends javax.swing.JPanel {
 

@@ -12,7 +12,7 @@ import UI.SystemAdminPanels.UserRegistrationJPanel;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class LibrarianJFrame extends javax.swing.JFrame {
 

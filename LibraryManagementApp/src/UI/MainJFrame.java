@@ -102,7 +102,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // since there are multiple users in the system at different levels
         // we need to traverse through all the directories to check for the username and password role match
         Boolean foundUser = false;
-        Branch currentBranch;
+        //Branch currentBranch;
         String personId;
         String userName = usernameTextField.getText();
         
@@ -129,14 +129,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 
                 boolean isEmployee = false;
                 
-                for(Branch branch : this.business.getBranches().getBranchesList())
+                for(Branch b : this.business.getBranches().getBranchesList())
                 {
-                    Employee emp = branch.getLibrary().getEmployees().findEmployee(personId);
+                    Employee emp = b.getLibrary().getEmployees().findEmployee(personId);
                     if(emp != null)
                     {
-                        user.getRole().createWorkArea(business, branch, user);
+                        user.getRole().createWorkArea(business, b, user);
                         this.setVisible(false);
+                        isEmployee = true;
+                        break;
                     }
+                    
                 }
                 
                 if (!isEmployee)

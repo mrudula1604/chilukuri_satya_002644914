@@ -37,8 +37,8 @@ public class RentalRequestDirectory {
         RentalRequest o = new RentalRequest(customer, branch, materialId, duration, price);
         this.rentalList.add(o);
         
-        RentalRequestDirectory rr = branch.getLibrary().getRentals();
-        rr.getOrderlist().add(o);
+        //RentalRequestDirectory rr = branch.getLibrary().getRentals();
+        //rr.getOrderlist().add(o);
         return o;
     }
     
@@ -54,13 +54,13 @@ public class RentalRequestDirectory {
     
     public void approveRequest(String orderId) {
        RentalRequest currentRR = findRentalRequest(orderId);
-       currentRR.setStatus("Rented");
+       currentRR.setStatus("approved");
     }
     
     public void returnRental(String orderId)
     {
         RentalRequest currentRR = findRentalRequest(orderId);
-       currentRR.setStatus("Returned");
+       currentRR.setStatus("returned");
     }
     
 }

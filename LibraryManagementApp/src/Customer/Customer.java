@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public class Customer extends Person{
     private static int count = 0;

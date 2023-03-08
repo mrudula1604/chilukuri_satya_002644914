@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class MagazinesJPanel extends javax.swing.JPanel {
 
@@ -190,7 +190,7 @@ public class MagazinesJPanel extends javax.swing.JPanel {
             RentalRequestDirectory rd = selectedBranch.getLibrary().getRentals();
             rd.createOrder(customer, selectedBranch, bookSerialNo, duration, price);
             
-            selectedBranch.getLibrary().getMagazines().findMagazine(branchId).setIsAvailable(false);
+            selectedBranch.getLibrary().getMagazines().findMagazine(bookSerialNo).setIsAvailable(false);
             
             displayMagazines(selectedBranch.getLibrary().getMagazines().getMagazinesList());
         }

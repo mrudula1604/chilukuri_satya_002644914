@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class Material {
     String serialNumber;

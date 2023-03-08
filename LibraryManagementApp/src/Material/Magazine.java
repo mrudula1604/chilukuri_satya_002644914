@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class Magazine extends Material{
     private String companyName;

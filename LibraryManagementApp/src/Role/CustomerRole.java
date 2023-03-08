@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public class CustomerRole extends Role {
     

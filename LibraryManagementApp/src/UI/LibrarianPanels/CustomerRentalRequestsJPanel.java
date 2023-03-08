@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Prasad
+ * @author Chilukuri
  */
 public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
 
@@ -29,6 +29,8 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
         initComponents();
         this.branch = branch;
         this.renRequestsTableModel = (DefaultTableModel) libRenRequestsJTable.getModel();
+        
+        displayRentalRequests();
     }
     
     private void displayRentalRequests() {
@@ -142,7 +144,7 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
             Book book = this.branch.getLibrary().getBooks().findBook(materialId);
             if (book != null)
             {
-                book.setIsAvailable(true);
+                book.setIsAvailable(false);
             }
             else
             {
@@ -180,7 +182,7 @@ public class CustomerRentalRequestsJPanel extends javax.swing.JPanel {
                 this.branch.getLibrary().getMagazines().findMagazine(materialId).setIsAvailable(true);
             }
             
-            this.branch.getLibrary().getRentals().findRentalRequest(orderId).setStatus("approved");
+            this.branch.getLibrary().getRentals().findRentalRequest(orderId).setStatus("rejected");
             
             displayRentalRequests();
         }

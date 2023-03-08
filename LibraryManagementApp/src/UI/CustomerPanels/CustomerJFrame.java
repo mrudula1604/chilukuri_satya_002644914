@@ -14,7 +14,7 @@ import Customer.Customer;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public class CustomerJFrame extends javax.swing.JFrame {
 

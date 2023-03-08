@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Nidhi Raghavendra
+ * @author chilukuri
  */
 public abstract class Role {
     

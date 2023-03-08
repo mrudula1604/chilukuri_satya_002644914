@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Prasad
+ * @author chilukuri
  */
 public class AuthorDirectory {
     private ArrayList<Author> authorList;
